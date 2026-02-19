@@ -1,17 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "../components/Layout";
+import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
-import Kontak from "../pages/Kontak";
-import TemplateDetail from "../pages/TemplateDetail";
+import TemplatePreview from "../pages/TemplatePreview";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      {/* Route yang menggunakan Navbar DAN Footer */}
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/kontak" element={<Kontak />} />
-        <Route path="/template/:id" element={<TemplateDetail />} />
       </Route>
+
+      {/* Route khusus Preview: Navbar dipanggil manual di dalam, tanpa Footer */}
+      <Route path="/template/:slug" element={<TemplatePreview />} />
     </Routes>
   );
 }

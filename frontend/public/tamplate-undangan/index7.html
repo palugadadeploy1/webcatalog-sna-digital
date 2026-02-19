@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Wedding Invitation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffffff",
+                        "gold": "#D4AF37",
+                        "soft-grey": "#F9F8F6",
+                        "border-grey": "#F5F5F0",
+                        "accent": "#d4af37",
+                        "gold-light": "#f4e6b5",
+                        "gold-deep": "#b8860b",
+                        "background": "#ffffff",
+                        "surface": "#ffffff",
+                        "text-main": "#1a1a1a",
+                        "text-muted": "#F2EAD3"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif-gold": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "none": "0",
+                        "sm": "2px",
+                        "DEFAULT": "4px",
+                        "lg": "8px",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+            --gold-accent: #D4AF37;
+        }
+
+        body {
+            @apply bg-white text-zinc-900 font-display overflow-hidden;
+        }
+
+        .minimal-card {
+            @apply bg-white border border-border-grey;
+            box-shadow: var(--card-shadow);
+        }
+
+        .scene {
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.8s ease;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 10px;
+        }
+
+        @layer base {
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                @apply bg-background text-text-main;
+            }
+        }
+
+        .minimal-card {
+            background: #ffffff;
+            border: 1px solid #f2f2f2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #b8860b, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e5e5e5;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        .masonry-grid {
+            columns: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                columns: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                columns: 3;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37 !important;
+            ring: 0 !important;
+        }
+
+        .wish-card {
+            background: #ffffff;
+            border: 1px solid #f4e6b5;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .wish-card:hover {
+            transform: translateY(-5px);
+        }
+        @keyframes carousel-slide {
+            0%, 20% { transform: translateX(0); }
+            25%, 45% { transform: translateX(-100%); }
+            50%, 70% { transform: translateX(-200%); }
+            75%, 95% { transform: translateX(-300%); }
+            100% { transform: translateX(0); }
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+        }
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        .scene {
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .scene-hide {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased h-screen overflow-hidden">
+    <!-- ================= MUSIC ================= -->
+    <audio id="bgm" src="musik.mp3" loop></audio>
+
+    <!-- Background Video -->
+    <video class="fixed inset-0 w-full h-full object-cover -z-10" autoplay muted loop playsinline>
+        <source src="bg-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- overlay global -->
+    <div class="fixed inset-0 bg-black/50 -z-10"></div>
+
+
+    <!-- SCENE 1 -->
+    <section id="scene-1" class="scene min-h-screen flex items-center justify-center text-center px-6">
+        <div class="scene fixed inset-0 z-40 flex flex-col items-center justify-center text-center px-6" id="scene-1">
+            <div class="max-w-4xl space-y-8">
+                <span class="text-white font-medium tracking-[0.6em] uppercase text-[10px] block mb-4">The Wedding
+                    Celebration of</span>
+                <h1 class="text-white tracking-tighter text-6xl md:text-8xl font-light leading-tight">
+                    Oliver <span class="font-bold">&amp;</span> Sophia
+                </h1>
+                <div class="h-[1px] w-12 bg-gold mx-auto my-10"></div>
+                <p class="text-white text-lg md:text-xl font-light tracking-[0.4em] uppercase">
+                    30 . 06 . 2026
+                </p>
+                <div class="pt-16">
+                    <button id="OpenInvitation"
+                        class="OpenInvitation inline-flex min-w-[220px] cursor-pointer items-center justify-center overflow-hidden bg-gold border border-gold h-14 px-10 text-white text-sm font-semibold leading-normal tracking-[0.2em] hover:bg-white hover:text-gold transition-all duration-300 group"
+                        for="scene-toggle">
+                        <span class="uppercase">Buka Undangan</span>
+                    </button>
+                </div>
+            </div>
+            <div class="absolute bottom-12 flex flex-col items-center gap-4 opacity-30">
+                <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SCENE 2 -->
+    <section id="scene-2" class="scene hidden">
+        <main class="relative pt-24 ">
+            <section class="min-h-screen flex flex-col items-center justify-center px-6 py-24" id="story">
+                <div class="flex flex-col items-center text-center max-w-3xl mx-auto space-y-12">
+                    <div class="relative">
+                        <div class="aspect-square w-56 md:w-64 bg-center bg-cover border-[10px] border-white shadow-xl rounded-sm"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcsvXQGnMeX2TsBnLHIIiqaFMzpgE5XwATpjotTjYkzH29aZv8LtupiqfblT9aUJgkQN02MuyjaDRvWyzdgpgZo0BASCRx3ZUyZZ2KeM2jC9LFDnA2nzCFD-x3gJUFU-bxH3cqlfIvNl7Migp0E8zGKV8kryhXac8_KGMMtYMvRQb09D7bh5t2pO_-tZrmZLXfeU2XLhaNZtHmPvrliB7VZHzoJBM7S09IpZ_wwqBolhY90s6ygAESOJ_zEBvGxDlBeQKsMkb-xuU");'>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-accent text-white p-3 shadow-lg">
+                            <span class="material-symbols-outlined !text-xl">favorite</span>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h1 class="text-primary text-6xl md:text-8xl font-light tracking-tighter">Oliver &amp; Sophia
+                        </h1>
+                        <p class="text-primary text-xl md:text-2xl font-light max-w-xl mx-auto leading-relaxed">
+                            Celebrating the beginning of our life together. We invite you to share in our joy.
+                        </p>
+                        <div class="pt-8 flex flex-col items-center gap-4">
+                            <div class="h-px w-20 bg-accent/40"></div>
+                            <p class="text-[12px] font-bold tracking-[0.5em] uppercase text-accent">Tuesday, June 30 2026
+                                
+                            </p>
+                            <div class="h-px w-20 bg-accent/40"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full max-w-[1200px] mx-auto px-6 py-32" id="profile">
+                <div class="text-center mb-24">
+                    <h2 class="text-primary text-3xl md:text-4xl font-bold tracking-tight mb-4 uppercase">The Couple
+                    </h2>
+                    <div class="w-12 h-0.5 bg-accent mx-auto"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="aspect-[4/5] w-full max-w-sm bg-center bg-cover rounded-lg shadow-2xl mb-10 border border-neutral-100"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcsvXQGnMeX2TsBnLHIIiqaFMzpgE5XwATpjotTjYkzH29aZv8LtupiqfblT9aUJgkQN02MuyjaDRvWyzdgpgZo0BASCRx3ZUyZZ2KeM2jC9LFDnA2nzCFD-x3gJUFU-bxH3cqlfIvNl7Migp0E8zGKV8kryhXac8_KGMMtYMvRQb09D7bh5t2pO_-tZrmZLXfeU2XLhaNZtHmPvrliB7VZHzoJBM7S09IpZ_wwqBolhY90s6ygAESOJ_zEBvGxDlBeQKsMkb-xuU");'>
+                        </div>
+                        <h3 class="text-accent text-3xl font-serif-gold mb-2 italic">Oliver Alexander</h3>
+                        <p class="text-text-muted text-sm tracking-widest uppercase mb-6">The Groom</p>
+                        <div class="h-px w-12 bg-accent/20 mb-6"></div>
+                        <p class="text-text-muted text-sm leading-loose">
+                            Son of Mr. Arthur Alexander &amp;<br />
+                            Mrs. Eleanor Alexander
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="aspect-[4/5] w-full max-w-sm bg-center bg-cover rounded-lg shadow-2xl mb-10 border border-neutral-100"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBi67lQ_uoLrdysEOY7F1E4agVXduP0immBj4dgQbeztcCb0xB-RbTeEIrVemLWe-XHLZ2ayssIXwCKFWvsC9aQpXIL_O6UqhVI8CiZ5-3ItWa8hlyGQNhp0YUH_PFWTIhtfX7V58DNcmavacOFchWMN3LMDil6YtVo9yNF-onP4wl1nN_75lt4BX3FNMZO7jw0rT-BEzAd2OJiIrb4ONgNbJE5t1IfWdoeXeZBOlP3PmA5eUOvYBdYB4uUD3XOqaLSFV-oaEY1JYM");'>
+                        </div>
+                        <h3 class="text-accent text-3xl font-serif-gold mb-2 italic">Sophia Isabella</h3>
+                        <p class="text-text-muted text-sm tracking-widest uppercase mb-6">The Bride</p>
+                        <div class="h-px w-12 bg-accent/20 mb-6"></div>
+                        <p class="text-text-muted text-sm leading-loose">
+                            Daughter of Mr. Julian Sterling &amp;<br />
+                            Mrs. Catherine Sterling
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full bg-neutral-50/50 py-32">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <span class="material-symbols-outlined text-accent/30 text-5xl mb-8">format_quote</span>
+                    <p class="text-gold-deep text-3xl md:text-4xl font-serif-gold italic leading-relaxed">
+                        "Two souls with but a single thought, two hearts that beat as one."
+                    </p>
+                    <p class="mt-8 text-gold-light text-xs tracking-[0.5em] uppercase">— Friedrich Halm</p>
+                </div>
+            </section>
+            <section class="w-full py-32 bg-white">
+                <div class="max-w-[1200px] mx-auto px-6 text-center">
+                    <h3 class="text-gold-deep text-[10px] font-black tracking-[0.5em] uppercase mb-12">The Final
+                        Countdown
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                        <div class="flex flex-col items-center">
+                            <p class="cd-days text-accent text-5xl md:text-7xl font-light mb-2">00</p>
+                            <span class="text-gold-deep text-[10px] font-bold tracking-[0.4em] uppercase">Days</span>
+                        </div>
+                        <div class="flex flex-col items-center border-l border-neutral-100">
+                            <p class="cd-hours text-accent text-5xl md:text-7xl font-light mb-2">00</p>
+                            <span class="text-gold-deep text-[10px] font-bold tracking-[0.4em] uppercase">Hours</span>
+                        </div>
+                        <div class="flex flex-col items-center border-l border-neutral-100">
+                            <p class="cd-minutes text-accent text-5xl md:text-7xl font-light mb-2">00</p>
+                            <span class="text-gold-deep text-[10px] font-bold tracking-[0.4em] uppercase">Mins</span>
+                        </div>
+                        <div class="flex flex-col items-center border-l border-neutral-100">
+                            <p class="cd-seconds text-accent text-5xl md:text-7xl font-light mb-2">00</p>
+                            <span class="text-gold-deep text-[10px] font-bold tracking-[0.4em] uppercase">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full max-w-[1200px] mx-auto px-6 py-32" id="events">
+                <div class="text-center mb-24">
+                    <h2 class="text-primary text-3xl md:text-4xl font-bold tracking-tight mb-4 uppercase">The
+                        Celebration
+                    </h2>
+                    <div class="w-12 h-0.5 bg-accent mx-auto"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div
+                        class="minimal-card flex flex-col transition-all duration-300 hover:shadow-xl bg-white rounded-lg overflow-hidden">
+                        <div class="w-full h-80 bg-center bg-cover"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDq-83-LJ6th7A9ZBL-ZPprN7Ft4Lzu6mEcSBjTNomWl5JbQLUF7kpAvoWhHMT5YljIpqBmGTSmTXCo1jgdlG1N0XxzAw6NNeWRRFLKQ8RNJ9pxVFu6yQpsWldK9QXPxcF_Up8QO9g2jcVmuNdHvK2rNsdvIkpVVGBiB_APW5NYnOG_khThLwwwo_c2qElf0sm3O8Z2Sil2g25_TDiK_fjlFeBHRQUkh-Az8xixB0c4TLwKDFrOHQAAsZbzGz5bStGRimhhQpPeWF0");'>
+                        </div>
+                        <div class="p-10 flex flex-col grow">
+                            <div class="mb-10">
+                                <span
+                                    class="text-[10px] font-black tracking-[0.3em] uppercase text-accent mb-2 block">Ceremony</span>
+                                <h3 class="text-gold text-3xl font-light mb-6 tracking-tight">The Wedding Service
+                                </h3>
+                                <div class="space-y-4 text-gold">
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">calendar_month</span>
+                                        <span class="font-medium">Tuesday, June 30th 2026</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">schedule</span>
+                                        <span>Arrival at 3:30 PM • Service 4:00 PM</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">location_on</span>
+                                        <span>The Redwood Grove, California</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="btn-map inline-flex min-w-[220px] cursor-pointer items-center justify-center overflow-hidden bg-gold border border-gold h-14 px-10 text-white text-sm font-semibold leading-normal tracking-[0.2em] hover:bg-white hover:text-gold transition-all duration-300 group"
+                                data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">View
+                                Map
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="minimal-card flex flex-col transition-all duration-300 hover:shadow-xl bg-white rounded-lg overflow-hidden">
+                        <div class="w-full h-80 bg-center bg-cover"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBAxcKQf8V_PlkXHV04qE5gvoUPXniNdfgWMa8y7kHG3anlcD9A2Tx8CgNo9P2m7uF1AbGMP3ROj4shDBgErPWivP8ipVHGlLA6w-jALDD-2cQF8PwNdxgVRr-Z5Zm-g6hdW5Fb81mgexEWT__T8eCJL0tkAOqjepCVnC8JgYxupU8q0wgwdPJ81q5FKpRD4bixvKUq40-RJtCCSQc5DRQY1HCxLQYaKHGttqTjVd_Zo-Srow7EJJwDGbPmEv2sIePqqeZ68sEYgnI");'>
+                        </div>
+                        <div class="p-10 flex flex-col grow">
+                            <div class="mb-10">
+                                <span
+                                    class="text-[10px] font-black tracking-[0.3em] uppercase text-accent mb-4 block">Reception</span>
+                                <h3 class="text-gold text-3xl font-light mb-6 tracking-tight">Dinner &amp; Dancing
+                                </h3>
+                                <div class="space-y-4 text-gold">
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">calendar_month</span>
+                                        <span class="font-medium">Tuesday, June 30th, 2026</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">schedule</span>
+                                        <span>Arrival at 3:30 PM • Service 4:00 PM</span>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <span class="material-symbols-outlined !text-xl text-gold">location_on</span>
+                                        <span>The Redwood Grove, California</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="btn-map inline-flex min-w-[220px] cursor-pointer items-center justify-center overflow-hidden bg-gold border border-gold h-14 px-10 text-white text-sm font-semibold leading-normal tracking-[0.2em] hover:bg-white hover:text-gold transition-all duration-300 group"
+                                data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">View
+                                Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Moments in Love -->
+            <section class="w-full max-w-[1200px] mx-auto px-6 py-32" id="gallery">
+                <div class="text-center mb-16">
+                    <h2 class="text-primary text-3xl md:text-4xl font-bold tracking-tight mb-4 uppercase">Moments in
+                        Love
+                    </h2>
+                    <div class="w-12 h-0.5 bg-accent mx-auto"></div>
+                </div>
+                <div class="masonry-grid">
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Couple portrait" class="w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYXzcNFLAKaYtsc6ngPdF7I4a2xuRbiXMCeN6UOAuTcZ_FJ37bEkCwmlFcob0UGrsEd7u5XWYK1yTTYTrc_eIGOswKB8O782MqQlSmYYhMED1hdKK4pvU8dBDJdfLI_5noE8f-ODh1_gG6yOhAC-KocXBmMb2FJh5IgA8MUwp9knTWgqGi52av3gA7D1PhmwDJNksZB3D5jGgrYDKFVRogRJ-Sn8YwfaPFudrcDkWR3LwDRqgUXV5Gy8v9rwG0y-aQ-0BhrVIIFTc" />
+                        </div>
+                    </div>
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Candid moment" class="w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw-a90iSpfTfhwoC4egeF_ERwH1XH7Jayfi8WztwdwPpYMxyP3ss4qt4FvvHlrtJHmoMmja5iExbzaxtAECp_5uWHhFDT6-1d3JrT2pndIgY4mTsnN3B0O3-arwag9dRSbEivkI4ADeE-MonaGwLpNPqW9G_dbNLyxiCVQgTzGXwy4WEc_VfdvTDZeE_Bc7qzPSshSwgGM2CrXaNcX0CAf_oRyS0Vt6cGiwUTD_D3zyvPN8BKPh-QArBfzDqF_d-Keo8NT-ZlIUls" />
+                        </div>
+                    </div>
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Couple smiling" class="w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi67lQ_uoLrdysEOY7F1E4agVXduP0immBj4dgQbeztcCb0xB-RbTeEIrVemLWe-XHLZ2ayssIXwCKFWvsC9aQpXIL_O6UqhVI8CiZ5-3ItWa8hlyGQNhp0YUH_PFWTIhtfX7V58DNcmavacOFchWMN3LMDil6YtVo9yNF-onP4wl1nN_75lt4BX3FNMZO7jw0rT-BEzAd2OJiIrb4ONgNbJE5t1IfWdoeXeZBOlP3PmA5eUOvYBdYB4uUD3XOqaLSFV-oaEY1JYM" />
+                        </div>
+                    </div>
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Holding hands" class="text-center w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa_NfUqzq6NcMUgC8hOTZ5twpeZFIyYDeqK38ShA4n9WR9dv3mrI-Ch4z-2rtireU2r8N8KC2vmFPvbmyBIoMk1lWdw2Pj0nL9uukq-hp7s_hbXzIYc_HmB4qSZN3rpvi8QLAX96pAQYzpotvcFQkMr-WEap1_NLt_cWlaNo0AOaxVmy1BrVELmWaFfZTc0nm58wyfrHGvsDcqSrat8_9KlpmFrVlHrzp38PejoN-KCRoHLQXMa0HN05DMGq5ep0ppdUgJqATa_dE" />
+                        </div>
+                    </div>
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Golden hour" class="w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3c8FTZQl_ku7CMnlIF3CEYwL-URAPXUGXmbBRBnTSJki2ttsNHGsOaLubUIzGS9V0CRARMkEs04w_K_RbKE3vIYnIayKCjkLMk_TYnsm4CQC5kTT_cdFmegUSo4SDysz6ODhZCT2qTcvpH0vBW5UA8puRjuWVSApj0DEgPqGnquxmrBzzcZBj_GamvFv7YrUzbdhqQJ0tGN737Q-yGPiyBsOyTARino4mdNeLn0i4aNNM0RRMWmXWEVVMwLIVu7z968zVtVeXevo" />
+                        </div>
+                    </div>
+                    <div class="masonry-item">
+                        <div
+                            class="rounded-lg overflow-hidden shadow-lg border border-neutral-50 transition-transform duration-500 hover:scale-[1.02]">
+                            <img alt="Sunset kiss" class="w-full h-auto object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5EpfATGcTUnYvCpPn95ZbtVZLAdU-11JrwUC4QLlXVj8039JUt8RiEhC2wVxbHk8tXqj4Zlwhr-HoGJfZV0layyKWcwyPYbWcDadpkHPTnGuHW07vtNLv34j2_jrL200qWlDTGkIbUjHgOJoAraaTWDB5rMl8nIjQACyXUL9sx0DYE2wKuag0nGid00gG8u1h-gvnHBxWeXb5SG_LQrz-iVHhqdkhEruq9PF5Nc5zPSAj9ruS1DzyzdOhfBLWs2AvqPHPRP2HiM4" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full bg-neutral-50/50 py-32" id="wishes">
+                <div class="max-w-2xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-primary text-3xl md:text-4xl font-bold tracking-tight mb-4 uppercase">Wishes for
+                            Us
+                        </h2>
+                        <div class="w-12 h-0.5 bg-accent mx-auto"></div>
+                        <p class="mt-6 text-white font-light">Your blessings message below.</p>
+                    </div>
+                    <div class="minimal-card p-10 md:p-14 bg-white rounded-lg">
+                        <form action="#" class="space-y-8">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Full
+                                    Name</label>
+                                <input
+                                    class="w-full bg-white border-b border-neutral-200 py-3 focus:border-accent transition-all placeholder:text-neutral-300 px-2.5 font-light"
+                                    placeholder="e.g. Michael Smith" type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent">Your
+                                    Message</label>
+                                <textarea
+                                    class="w-full bg-white border-b border-neutral-200 py-3 px-2.5 focus:border-accent transition-all placeholder:text-neutral-300 font-light resize-none"
+                                    placeholder="Write your heartfelt wishes here..." rows="4"></textarea>
+                            </div>
+                            <button
+                                class="w-full bg-accent text-white hover:bg-gold-deep transition-all duration-500 px-8 py-5 text-[11px] font-bold uppercase tracking-[0.3em] shadow-lg shadow-accent/20"
+                                type="submit">
+                                Send Wishes
+                            </button>
+                        </form>
+                    </div>
+                    <div class="space-y-12 mt-8">
+                        <div class="flex items-center gap-4">
+                            <div class="h-px grow bg-neutral-200"></div>
+                            <span class="text-[10px] text-base font-bold uppercase tracking-[0.4em] text-white">Recent Wish</span>
+                            <div class="h-px grow bg-neutral-200"></div>
+                        </div>
+                        <div class="relative group">
+                            <button
+                                class="wish-prev absolute left-[-60px] top-1/2 -translate-y-1/2 text-accent hover:text-gold-deep transition-colors p-2 z-10 hidden md:block">
+                                <span class="material-symbols-outlined !text-4xl">chevron_left</span>
+                            </button>
+                            <button
+                                class="wish-next absolute right-[-60px] top-1/2 -translate-y-1/2 text-accent hover:text-gold-deep transition-colors p-2 z-10 hidden md:block">
+                                <span class="material-symbols-outlined !text-4xl">chevron_right</span>
+                            </button>
+                            <div class="carousel-container overflow-hidden py-8">
+                                <div class="carousel-track">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 min-w-full px-4">
+                                        <div class="wish-card p-8 rounded-sm rotate-1">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">
+                                                William
+                                                &amp; Charlotte</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "To a
+                                                lifetime of adventure, laughter, and endless love. So happy to witness
+                                                your
+                                                special day!"</p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                        <div class="wish-card p-8 rounded-sm -rotate-1">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">
+                                                Eleanor
+                                                Davies</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "The
+                                                most beautiful couple I know. May your journey together be as magical as
+                                                your wedding."</p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                        <div class="wish-card p-8 rounded-sm rotate-2">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">
+                                                Uncle
+                                                Robert</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "Welcome to the family, Sophia! Oliver, you're a lucky man. Best wishes
+                                                to
+                                                both of you."</p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 min-w-full px-4">
+                                        <div class="wish-card p-8 rounded-sm -rotate-2">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">The
+                                                Henderson Family</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "Cheers to the happy couple! Looking forward to celebrating with you
+                                                both
+                                                under the redwoods."</p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                        <div class="wish-card p-8 rounded-sm rotate-1">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">
+                                                James
+                                                &amp; Sarah</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "So
+                                                much love for you two. May your hearts always beat as one. A truly
+                                                inspiring
+                                                journey."</p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                        <div class="wish-card p-8 rounded-sm -rotate-1">
+                                            <p class="text-gold font-bold text-sm mb-4 uppercase tracking-wider">
+                                                Amelia
+                                                Watson</p>
+                                            <p class="text-gold-deep font-serif-gold text-lg leading-relaxed italic">
+                                                "Wishing you a lifetime of happiness. Your love story is one for the
+                                                books!"
+                                            </p>
+                                            <div class="mt-6 flex justify-end">
+                                                <span class="material-symbols-outlined text-accent/20">favorite</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-center gap-3 mt-8">
+                                <div class="size-1.5 rounded-full bg-accent"></div>
+                                <div class="size-1.5 rounded-full bg-accent/30"></div>
+                                <div class="size-1.5 rounded-full bg-accent/30"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full py-32 bg-neutral-50/50" id="gifts">
+                <div class="max-w-[1200px] mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-primary text-3xl md:text-4xl font-bold tracking-tight mb-2 uppercase">Online
+                            Gift
+                        </h2>
+                        <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+                        <p class="mt-8 text-primary text-lg font-light max-w-2xl mx-auto leading-relaxed">
+                            Your presence at our wedding is the greatest gift we could ask for. However, if you would
+                            like
+                            to honor us with a digital gift, we have provided our details below.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div
+                            class="minimal-card p-10 flex flex-col items-center text-center border-neutral-100 rounded-lg group transition-all duration-300 hover:shadow-xl">
+                            <div
+                                class="w-16 h-16 bg-neutral-50 rounded-full flex items-center justify-center mb-6 text-accent">
+                                <span class="material-symbols-outlined !text-3xl">account_balance</span>
+                            </div>
+                            <h4 class="text-gold text-xl font-bold mb-1">Bank BCA</h4>
+                            <p class="text-gold-deep text-sm mb-6 uppercase tracking-widest font-medium">Oliver
+                                Alexander
+                            </p>
+                            <div
+                                class="bg-neutral-50 w-full py-4 px-6 rounded-sm flex items-center justify-between gap-4 mb-8">
+                                <p id="norek1" class="text-gold-deep tracking-widest text-lg">8690 1234 56</p>
+                                <button data-copy="norek1"
+                                    class="text-accent hover:text-gold-deep transition-colors flex items-center gap-1 group/btn">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider">Copy</span>
+                                    <span class="material-symbols-outlined !text-lg">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            class="minimal-card p-10 flex flex-col items-center text-center border-neutral-100 rounded-lg group transition-all duration-300 hover:shadow-xl">
+                            <div
+                                class="w-16 h-16 bg-neutral-50 rounded-full flex items-center justify-center mb-6 text-accent">
+                                <span class="material-symbols-outlined !text-3xl">account_balance_wallet</span>
+                            </div>
+                            <h4 class="text-gold text-xl font-bold mb-1">Dana / GoPay</h4>
+                            <p class="text-gold-deep text-sm mb-6 uppercase tracking-widest font-medium">Sophia
+                                Isabella
+                            </p>
+                            <div
+                                class="bg-neutral-50 w-full py-4 px-6 rounded-sm flex items-center justify-between gap-4 mb-8">
+                                <p id="norek2" class="text-gold-deep tracking-widest text-lg">0812 3456 7890</p>
+                                <button data-copy="norek2"
+                                    class="text-accent hover:text-gold-deep transition-colors flex items-center gap-1 group/btn">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider">Copy</span>
+                                    <span class="material-symbols-outlined !text-lg">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="pt-16 text-center">
+                <div class="max-w-2xl mx-auto px-6">
+                    <span class="material-symbols-outlined text-4xl text-accent/30 mb-8">park</span>
+                    <h2 class="text-primary text-3xl font-light mb-6">See You Soon</h2>
+                    <p class="text-text-muted text-lg italic mb-12">"Whatever souls are made of, his and mine are the
+                        same."
+                    </p>
+                    <div class="h-px w-32 bg-accent/20 mx-auto"></div>
+                </div>
+            </section>
+            <footer class="w-full py-16 text-center text-text-muted text-[10px] tracking-[0.4em] uppercase">
+                <p>✨SNA Digital • <span class="text-accent">Crafted With Love Always</span></p>
+            </footer>
+        </main>
+    </section>
+
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // scene
+        const openBtn = document.getElementById('OpenInvitation');
+        const scene1 = document.getElementById('scene-1');
+        const scene2 = document.getElementById('scene-2');
+        const bgm = document.getElementById('bgm');
+
+        openBtn.addEventListener('click', () => {
+
+            // play music (mobile friendly)
+            bgm.play().catch(() => { });
+
+            // animasi keluar scene 1
+            scene1.classList.add('scene-hide');
+
+            setTimeout(() => {
+                scene1.classList.add('hidden');
+                scene2.classList.remove('hidden');
+
+                // reset animasi scene 2
+                requestAnimationFrame(() => {
+                    scene2.classList.remove('scene-hide');
+                });
+
+                // unlock scroll (scene 2 is long)
+                document.body.classList.remove('overflow-hidden');
+
+            }, 700);
+        });
+
+        // Open maps
+        document.querySelectorAll('.btn-map').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.dataset.map;
+                if (url) {
+                    window.open(url, '_blank');
+                }
+            });
+        });
+
+        // Open maps
+        document.querySelectorAll('.btn-map').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.dataset.map;
+                if (url) {
+                    window.open(url, '_blank');
+                }
+            });
+        });
+
+        /* ================= COUNTDOWN ================= */
+        // set tanggal acara
+        const targetDate = new Date('2026-06-30T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) return;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.querySelectorAll('.cd-days').forEach(el => el.textContent = String(days).padStart(2, '0'));
+            document.querySelectorAll('.cd-hours').forEach(el => el.textContent = String(hours).padStart(2, '0'));
+            document.querySelectorAll('.cd-minutes').forEach(el => el.textContent = String(minutes).padStart(2, '0'));
+            document.querySelectorAll('.cd-seconds').forEach(el => el.textContent = String(seconds).padStart(2, '0'));
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // copy norek
+        document.querySelectorAll("button[data-copy]").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const targetId = button.dataset.copy;
+                const el = document.getElementById(targetId);
+
+                if (!el) return;
+
+                const text = el.innerText.trim();
+
+                navigator.clipboard.writeText(text).then(() => {
+
+                    const icon = button.querySelector(".material-symbols-outlined");
+
+                    if (icon) {
+                        const old = icon.textContent;
+                        icon.textContent = "check";
+
+                        setTimeout(() => {
+                            icon.textContent = old;
+                        }, 1200);
+                    }
+
+                });
+
+            });
+
+        });
+
+        /* ================= WISH CAROUSEL ================= */
+
+        const track = document.querySelector('#wishes .carousel-track');
+        const slides = document.querySelectorAll('#wishes .carousel-track > div');
+        const prevBtn = document.querySelector('#wishes .wish-prev');
+        const nextBtn = document.querySelector('#wishes .wish-next');
+
+        let currentIndex = 0;
+        let autoTimer = null;
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex++;
+
+            if (currentIndex >= totalSlides) {
+                currentIndex = 0; // balik ke awal
+            }
+
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex--;
+
+            if (currentIndex < 0) {
+                currentIndex = totalSlides - 1; // lompat ke terakhir
+            }
+
+            updateCarousel();
+        }
+
+        function startAuto() {
+            stopAuto();
+            autoTimer = setInterval(nextSlide, 4500);
+        }
+
+        function stopAuto() {
+            if (autoTimer) clearInterval(autoTimer);
+        }
+
+        /* tombol manual */
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                startAuto(); // reset timer setelah manual
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                startAuto();
+            });
+        }
+
+        /* pause kalau hover */
+        const container = document.querySelector('#wishes .carousel-container');
+
+        if (container) {
+            container.addEventListener('mouseenter', stopAuto);
+            container.addEventListener('mouseleave', startAuto);
+        }
+
+        updateCarousel();
+        startAuto();
+
+        AOS.init({
+            once: true,     // animasi hanya sekali
+            offset: 120,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+
+</body>
+
+</html>

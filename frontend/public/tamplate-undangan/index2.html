@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ahmad &amp; Fatimah - Wedding Invitation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#10b782",
+                        "gold": "#d4af37",
+                        "cream": "#fdfaf1",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#10221c",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .islamic-pattern {
+            background-color: #fdfaf1;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAWz_RmiSO_VEiWUkWmiEzNmiRgzazxf_6SzOjR8aSWlugxzPstaA32uTNq7Oy0t7Gf2vpvV-LsEIHT1MtmfMZlyEGZZQAjeaSX9SutlPoEaCJAIj5QU6dPYzvPu145Jznu2YG2n_zy3uLWtgKw28bAnz-ZqqoyqKZjpJlFxUBhnCir547BrjkkKfanpUCvooWNzPFe-5VHgB2JK8ge60TOPfRomjAQ_O_o7n5-KDMDNq8s6Vq58sNFf0jVeaMFbiBFt5QuNDXY);
+            background-blend-mode: soft-light;
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%)
+        }
+        .glow-button {
+            box-shadow: 0 0 15px rgba(16, 183, 130, 0.4)
+        }
+        .section-divider {
+            @apply relative h-24 flex items-center justify-center overflow-hidden bg-background-light dark:bg-background-dark;
+        }
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .nav-glass {
+            background: rgba(16, 34, 28, 0.8);
+        }
+        .nav-item.active {
+            @apply text-primary;
+        }
+        .nav-item.active .material-symbols-outlined {
+            font-variation-settings: "FILL" 1;
+        }
+        .lock-scroll{
+            overflow: hidden;
+            height: 100vh;
+        }
+
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d1b17] antialiased lg:pb-0">
+    <!-- audio -->
+    <audio id="bg-music" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+    
+    <main>
+        <section id="opening" class="relative min-h-screen w-full overflow-y-auto islamic-pattern">
+            <div class="absolute top-24 left-0 w-48 h-48 opacity-10 pointer-events-none">
+                <svg class="fill-primary" viewBox="0 0 100 100">
+                    <path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
+                <svg class="fill-gold" viewBox="0 0 100 100">
+                    <path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"></path>
+                </svg>
+            </div>
+            <div class="relative z-20 flex flex-col items-center text-center px-4 max-w-4xl pt-16 mx-auto">
+                <div class="relative mb-8 p-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl rotate-1">
+                    <div class="w-64 h-80 md:w-72 md:h-[400px] overflow-hidden rounded-xl border border-gold/20">
+                        <img alt="Wedding Couple" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-primary font-bold tracking-[0.2em] uppercase text-xs">Walimatul 'Ursy</p>
+                    <h4 class="font-serif italic text-lg text-gray-600 dark:text-gray-400">The Wedding of</h4>
+                    <h1 class="font-serif text-5xl md:text-7xl font-bold text-[#0d1b17] dark:text-white leading-tight">
+                        Ahmad <span class="text-primary">&amp;</span> Fatimah
+                    </h1>
+                    <p class="text-gray-500 dark:text-gray-400 font-medium max-w-md mx-auto py-2">
+                        “And among His signs is this, that He created for you mates from among yourselves...”
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <a id="openInvitationBtn"
+                        class="glow-button group inline-flex items-center gap-3 bg-primary text-white font-bold px-10 py-4 rounded-full transition-all hover:scale-105"
+                        href="#">
+                        <span class="material-symbols-outlined">mail</span>
+                        <span>Buka Undangan</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- scene 2 -->
+        <div id="scene2" class="hidden pb-24 lg:pb-0">
+            <div id="floating-navbar"
+                class=" hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-lg lg:max-w-xl">
+                <nav
+                    class="nav-glass border border-gold/30 rounded-full px-2 py-2 shadow-2xl flex items-center justify-around">
+                    <a class="nav-item active flex flex-col items-center gap-1 py-2 px-3 rounded-full transition-all duration-300 hover:bg-primary/5 text-gray-500 dark:text-gray-400 group"
+                        href="#opening">
+                        <span
+                            class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">home</span>
+                        <span class="text-[10px] font-bold uppercase tracking-tighter">Home</span>
+                    </a>
+                    <a class="nav-item flex flex-col items-center gap-1 py-2 px-3 rounded-full transition-all duration-300 hover:bg-primary/5 text-gray-500 dark:text-gray-400 group"
+                        href="#couple">
+                        <span
+                            class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">favorite</span>
+                        <span class="text-[10px] font-bold uppercase tracking-tighter">Couple</span>
+                    </a>
+                    <a class="nav-item flex flex-col items-center gap-1 py-2 px-3 rounded-full transition-all duration-300 hover:bg-primary/5 text-gray-500 dark:text-gray-400 group"
+                        href="#event">
+                        <span
+                            class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">calendar_today</span>
+                        <span class="text-[10px] font-bold uppercase tracking-tighter">Event</span>
+                    </a>
+                    <a class="nav-item flex flex-col items-center gap-1 py-2 px-3 rounded-full transition-all duration-300 hover:bg-primary/5 text-gray-500 dark:text-gray-400 group"
+                        href="#gallery">
+                        <span
+                            class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">photo_library</span>
+                        <span class="text-[10px] font-bold uppercase tracking-tighter">Gallery</span>
+                    </a>
+                    <a class="nav-item flex flex-col items-center gap-1 py-2 px-3 rounded-full transition-all duration-300 hover:bg-primary/5 text-gray-500 dark:text-gray-400 group"
+                        href="#guestbook">
+                        <span
+                            class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">auto_awesome</span>
+                        <span class="text-[10px] font-bold uppercase tracking-tighter">Wishes</span>
+                    </a>
+                </nav>
+            </div>
+            <section class="py-24 bg-white dark:bg-background-dark" id="couple">
+                <div class="max-w-5xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="material-symbols-outlined text-gold text-4xl mb-4">favorite</span>
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Assalamu'alaikum Warahmatullahi
+                            Wabarakatuh</h2>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">With the blessings of Allah
+                            (SWT), we joyfully invite you to the wedding of:</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="text-center space-y-4">
+                            <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/20 p-2">
+                                <img alt="Groom" class="w-full h-full object-cover rounded-full"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-primary">Ahmad Al-Fatih</h3>
+                            <p class="text-sm text-gray-500 italic">Son of Mr. Abdullah &amp; Mrs. Aminah</p>
+                            <div class="flex justify-center gap-4 text-gray-400">
+                                <span class="material-symbols-outlined">share</span>
+                            </div>
+                        </div>
+                        <div class="text-center space-y-4">
+                            <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-gold/20 p-2">
+                                <img alt="Bride" class="w-full h-full object-cover rounded-full"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-gold">Fatimah Azzahra</h3>
+                            <p class="text-sm text-gray-500 italic">Daughter of Mr. Ibrahim &amp; Mrs. Khadijah</p>
+                            <div class="flex justify-center gap-4 text-gray-400">
+                                <span class="material-symbols-outlined">share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 islamic-pattern" id="event">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h4 class="text-primary text-sm font-bold tracking-[0.2em] mb-2 uppercase">Save The Date</h4>
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Event Schedule</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 mb-16">
+                        <div
+                            class="bg-white/80 dark:bg-gray-800/80 p-8 rounded-3xl border border-primary/10 backdrop-blur-sm text-center">
+                            <span class="material-symbols-outlined text-4xl text-primary mb-4">mosque</span>
+                            <h3 class="font-serif text-2xl font-bold mb-2 dark:text-white">Akad Nikah</h3>
+                            <p class="text-gray-500 mb-6">Tuesday, 05 June 2026</p>
+                            <div class="space-y-2 text-sm">
+                                <p class="font-bold dark:text-gray-300">08:00 AM - 10:00 AM</p>
+                                <p class="dark:text-gray-400">Masjid Al-Barkah, Jakarta Selatan</p>
+                            </div>
+                            <button class="mt-8 text-primary font-bold text-sm border-b border-primary pb-1">VIEW
+                                MAP</button>
+                        </div>
+                        <div
+                            class="bg-white/80 dark:bg-gray-800/80 p-8 rounded-3xl border border-gold/10 backdrop-blur-sm text-center">
+                            <span class="material-symbols-outlined text-4xl text-gold mb-4">celebration</span>
+                            <h3 class="font-serif text-2xl font-bold mb-2 dark:text-white">Wedding Reception</h3>
+                            <p class="text-gray-500 mb-6">Tuesday, 05 June 2026</p>
+                            <div class="space-y-2 text-sm">
+                                <p class="font-bold dark:text-gray-300">11:00 AM - 02:00 PM</p>
+                                <p class="dark:text-gray-400">Grand Ballroom, Mulia Hotel</p>
+                            </div>
+                            <button class="mt-8 text-gold font-bold text-sm border-b border-gold pb-1">VIEW MAP</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-4 md:gap-8 max-w-2xl mx-auto">
+                        <div class="text-center bg-primary text-white p-4 rounded-2xl w-24">
+                            <p id="cd-days" class="text-2xl font-bold">00</p>
+                            <p class="text-[10px] uppercase">Days</p>
+                        </div>
+                        <div class="text-center bg-primary text-white p-4 rounded-2xl w-24">
+                            <p id="cd-hours" class="text-2xl font-bold">00</p>
+                            <p class="text-[10px] uppercase">Hours</p>
+                        </div>
+                        <div class="text-center bg-primary text-white p-4 rounded-2xl w-24">
+                            <p id="cd-minutes" class="text-2xl font-bold">00</p>
+                            <p class="text-[10px] uppercase">Mins</p>
+                        </div>
+                        <div class="text-center bg-primary text-white p-4 rounded-2xl w-24">
+                            <p id="cd-seconds" class="text-2xl font-bold">00</p>
+                            <p class="text-[10px] uppercase">Secs</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <section class="py-24 bg-white dark:bg-background-dark" id="story">
+                <div class="max-w-4xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Our Love Story</h2>
+                        <div class="w-20 h-1 bg-gold mx-auto mt-4 rounded-full"></div>
+                    </div>
+                    <div
+                        class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-primary/30 before:to-transparent">
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                <span class="material-symbols-outlined text-sm">school</span>
+                            </div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-background-light dark:bg-gray-800 border border-primary/5">
+                                <span class="text-xs font-bold text-primary mb-2 block">2020 - First Meeting</span>
+                                <h4 class="font-bold mb-2 dark:text-white">Meeting at University</h4>
+                                <p class="text-sm text-gray-500">Fate brought us together during our final year. It
+                                    started
+                                    with a shared book and turned into a lifelong conversation.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gold text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                <span class="material-symbols-outlined text-sm">favorite</span>
+                            </div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-background-light dark:bg-gray-800 border border-gold/5">
+                                <span class="text-xs font-bold text-gold mb-2 block">2025 - The Proposal</span>
+                                <h4 class="font-bold mb-2 dark:text-white">The Family Meeting</h4>
+                                <p class="text-sm text-gray-500">With the blessings of our parents, we committed to
+                                    building
+                                    a future centered on faith and mutual respect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 islamic-pattern" id="gallery">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Gallery of Memories</h2>
+                        <p class="text-gray-500 mt-2">Glimpses of our journey together</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="rounded-xl overflow-hidden aspect-[3/4] shadow-lg">
+                            <img alt="Gallery 1"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[3/4] shadow-lg md:mt-8">
+                            <img alt="Gallery 2"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[3/4] shadow-lg">
+                            <img alt="Gallery 3"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                        </div>
+                        <div class="rounded-xl overflow-hidden aspect-[3/4] shadow-lg md:mt-8">
+                            <img alt="Gallery 4"
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD28veSDa3dKP29Grw_FbNFcJUFV2Fe0XVPohimqM5N0Me90kogG_8VZiHA98kZnsvYJfMemrlVNGaIKME7R3Y2JWghdiJWPDZ7wgXxKFi1fe3nKkssVeuvP_eDwcuHVpxjiDsEr1hXMCiL0dEOUHKhHNBz_V0ql7-U1lJFl5NTxpQDYWfl4MDdjdQoLKseSqQhYp5Ne_nki7s5qL6IkpM_StHxM9ZG2jvT8OarwDR3e89gJsFbGQJqvxij4M868DIzjcyvxECe" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 islamic-pattern" id="guestbook">
+                <div class="max-w-3xl mx-auto px-4">
+                    <div class="text-center mb-12">
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Wishes &amp; Prayers</h2>
+                        <p class="text-gray-500 mt-2">Leave your warm wishes for the happy couple</p>
+                    </div>
+                    <div class="bg-white/90 dark:bg-gray-800/90 p-8 rounded-3xl shadow-xl border border-primary/10">
+                        <form class="space-y-4">
+                            <div>
+                                <input
+                                    class="w-full px-4 py-3 rounded-xl border-gray-200 dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-primary focus:border-primary"
+                                    placeholder="Your Name" type="text" />
+                            </div>
+                            <div>
+                                <textarea
+                                    class="w-full px-4 py-3 rounded-xl border-gray-200 dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-primary focus:border-primary"
+                                    placeholder="Write your wishes here..." rows="4"></textarea>
+                            </div>
+                            <div>
+                                <select
+                                    class="w-full px-4 py-3 rounded-xl border-gray-200 dark:bg-gray-900 dark:border-gray-700 dark:text-white focus:ring-primary focus:border-primary">
+                                    <option>I will attend</option>
+                                    <option>Maybe attending</option>
+                                    <option>Sorry, I can't attend</option>
+                                </select>
+                            </div>
+                            <button
+                                class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg hover:bg-primary/90 transition-all uppercase tracking-widest"
+                                type="button">SEND WISHES</button>
+                        </form>
+                        <div class="mt-12 space-y-6 max-h-80 overflow-y-auto pr-4">
+                            <div class="border-b border-gray-100 dark:border-gray-700 pb-4">
+                                <h5 class="font-bold dark:text-white">Name</h5>
+                                <p class="text-sm text-gray-500 italic mt-1">"wishing text"</p>
+                            </div>
+                            <div class="border-b border-gray-100 dark:border-gray-700 pb-4">
+                                <h5 class="font-bold dark:text-white">Name</h5>
+                                <p class="text-sm text-gray-500 italic mt-1">"wishing text"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 bg-white dark:bg-background-dark" id="gift">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <div class="mb-12">
+                        <span
+                            class="material-symbols-outlined text-4xl text-primary mb-4">featured_seasonal_and_gifts</span>
+                        <h2 class="font-serif text-4xl font-bold dark:text-white">Wedding Gift</h2>
+                        <p class="text-gray-500 mt-4">Your presence is the greatest gift for us. However, if you wish to
+                            give, we provide these digital channels:</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- BANK -->
+                        <div class="p-8 rounded-2xl border border-primary/20 bg-background-light dark:bg-gray-800">
+                            <p class="text-xs font-bold text-primary tracking-widest uppercase mb-4">Bank Transfer</p>
+                            <h4 class="text-xl font-bold mb-2 dark:text-white">Bank Syariah Indonesia</h4>
+
+                            <p class="text-2xl font-mono text-primary font-bold tracking-wider copy-target">
+                                1234 567 890
+                            </p>
+
+                            <p class="text-sm text-gray-500 mt-2">Ahmad Al-Fatih</p>
+
+                            <button type="button" onclick="copyNumber(this)"
+                                class="mt-4 px-6 py-2 bg-primary/10 text-primary text-xs font-bold rounded-full hover:bg-primary hover:text-white transition-all">
+                                COPY NUMBER
+                            </button>
+                        </div>
+
+                        <!-- EWALLET -->
+                        <div class="p-8 rounded-2xl border border-gold/20 bg-background-light dark:bg-gray-800">
+                            <p class="text-xs font-bold text-gold tracking-widest uppercase mb-4">E-Wallet</p>
+                            <h4 class="text-xl font-bold mb-2 dark:text-white">DANA / OVO</h4>
+
+                            <p class="text-2xl font-mono text-gold font-bold tracking-wider copy-target">
+                                081234567890
+                            </p>
+
+                            <p class="text-sm text-gray-500 mt-2">Fatimah Azzahra</p>
+
+                            <button type="button" onclick="copyNumber(this)"
+                                class="mt-4 px-6 py-2 bg-gold/10 text-gold text-xs font-bold rounded-full hover:bg-gold hover:text-white transition-all">
+                                COPY NUMBER
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="py-12 bg-white dark:bg-background-dark border-t border-primary/10 mb-20 lg:mb-0">
+                <div class="max-w-[1200px] mx-auto text-center px-4">
+                    <div class="flex justify-center mb-6">
+                        <span class="material-symbols-outlined text-4xl text-primary">all_inclusive</span>
+                    </div>
+                    <p class="font-serif text-2xl font-bold dark:text-white mb-2">Ahmad &amp; Fatimah</p>
+                    <p class="text-sm text-gray-400">“The best among you is the one who is best to his family.”
+                        (Tirmidhi)</p>
+                    <p class="text-[10px] text-gray-400 mt-8 uppercase tracking-widest">❤️Made by SNA Digital.
+                        Crafted with Love.</p>
+                </div>
+            </footer>
+        </div>
+
+    </main>
+    <script>
+        // audio 
+        const openBtn = document.getElementById("openInvitationBtn");
+        const scene2 = document.getElementById("scene2");
+        const music = document.getElementById("bg-music");
+        const floatingnavbar = document.getElementById("floating-navbar");
+
+        openBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // tampilkan scene 2
+            scene2.classList.remove("hidden");
+            scene2.classList.remove("lock-scroll");
+
+            // floating navbar
+            floatingnavbar.classList.remove("hidden")
+
+            // unlock scroll
+            document.body.classList.remove("overflow-hidden");
+
+            // play music
+            music.play().catch(() => {
+                console.log("Autoplay blocked, waiting user interaction.");
+            });
+
+            // scroll ke scene 2 (couple)
+            const couple = document.getElementById("couple");
+            couple.scrollIntoView({ behavior: "smooth" });
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navItems = document.querySelectorAll('.nav-item, header nav a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===============================
+        // SET TANGGAL AKAD / ACARA
+        // ===============================
+        // Format: YYYY-MM-DDTHH:MM:SS
+        // WIB = +07:00
+
+        const targetDate = new Date("2026-06-05T08:00:00+07:00").getTime();
+        // ↑ ganti sesuai tanggal & jam acaramu
+
+        const daysEl = document.getElementById("cd-days");
+        const hoursEl = document.getElementById("cd-hours");
+        const minutesEl = document.getElementById("cd-minutes");
+        const secondsEl = document.getElementById("cd-seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                daysEl.textContent = "00";
+                hoursEl.textContent = "00";
+                minutesEl.textContent = "00";
+                secondsEl.textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysEl.textContent = String(days).padStart(2, "0");
+            hoursEl.textContent = String(hours).padStart(2, "0");
+            minutesEl.textContent = String(minutes).padStart(2, "0");
+            secondsEl.textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // copy button
+        function copyNumber(btn) {
+
+            const container = btn.closest("div");
+            const textEl = container.querySelector(".copy-target");
+
+            const text = textEl.textContent.trim();
+
+            navigator.clipboard.writeText(text).then(() => {
+
+                const oldText = btn.textContent;
+                btn.textContent = "COPIED!";
+
+                setTimeout(() => {
+                    btn.textContent = oldText;
+                }, 1500);
+
+            }).catch(() => {
+                alert("Gagal copy nomor");
+            });
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("scene2").classList.add("lock-scroll");
+        });
+    </script>
+
+</body>
+
+</html>

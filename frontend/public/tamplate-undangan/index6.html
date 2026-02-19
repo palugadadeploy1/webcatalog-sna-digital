@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Celestial Midnight - New Constellations Cover</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4211d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0812",
+                        "silver": "#c0c0c0",
+                        "nebula-purple": "#4b0082",
+                        "nebula-indigo": "#1a0033",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"],
+                        "serif-elegant": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .scene {
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        .scene-hide{
+            opacity:0;
+            transform:translateY(20px);
+            pointer-events:none;
+        }
+        @layer utilities {
+            .star-field {
+                background-image: 
+                    radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+                    radial-gradient(1px 1px at 160px 120px, #ffffff, rgba(0,0,0,0));
+                background-repeat: repeat;
+                background-size: 200px 200px;
+                opacity: 0.3;
+            }
+            .twinkle-star {
+                position: absolute;
+                background: white;
+                border-radius: 50%;
+                filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+                animation: rapid-twinkle var(--twinkle-duration) ease-in-out infinite;
+                animation-delay: var(--twinkle-delay);
+            }
+            @keyframes rapid-twinkle {
+                0%, 100% { opacity: 0.3; transform: scale(0.8); filter: brightness(1) drop-shadow(0 0 2px white); }
+                50% { opacity: 1; transform: scale(1.2); filter: brightness(1.5) drop-shadow(0 0 8px white); }
+            }
+            .glowing-silver {
+                text-shadow: 0 0 10px rgba(192, 192, 192, 0.4), 0 0 20px rgba(192, 192, 192, 0.2);
+                color: #e2e8f0;
+            }
+            .pulse-silver {
+                box-shadow: 0 0 0 0 rgba(192, 192, 192, 0.4);
+            }
+            .moon-glow {
+                filter: drop-shadow(0 0 15px rgba(66, 17, 212, 0.5));
+            }
+            .shooting-star {
+                position: absolute;
+                top: var(--star-top);
+                left: var(--star-left);
+                width: 150px;
+                height: 1px;
+                background: linear-gradient(90deg, #ffffff, transparent);
+                opacity: 0;
+                transform: rotate(var(--star-angle));
+                filter: drop-shadow(0 0 4px #ffffff);
+                animation: shoot var(--star-duration) linear infinite;
+                animation-delay: var(--star-delay);
+            }
+            @keyframes shoot {
+                0% { transform: rotate(var(--star-angle)) translateX(0) scaleX(0); opacity: 0; }
+                5% { opacity: 0.8; }
+                15% { transform: rotate(var(--star-angle)) translateX(400px) scaleX(1); opacity: 0; }
+                100% { transform: rotate(var(--star-angle)) translateX(400px) scaleX(1); opacity: 0; }
+            }
+            .constellation-line {
+                stroke: rgba(192, 192, 192, 0.4);
+                stroke-width: 0.6;
+                filter: drop-shadow(0 0 2px rgba(192, 192, 192, 0.5));
+                animation: shimmer 6s ease-in-out infinite;
+            }
+            .constellation-star {
+                fill: #ffffff;
+                filter: drop-shadow(0 0 5px #ffffff);
+                animation: pulse-star 4s ease-in-out infinite;
+            }
+            @keyframes pulse-star {
+                0%, 100% { filter: drop-shadow(0 0 4px #ffffff); transform: scale(1); opacity: 0.8; }
+                50% { filter: drop-shadow(0 0 16px #ffffff); transform: scale(1.4); opacity: 1; }
+            }
+            @keyframes shimmer {
+                0%, 100% { stroke-opacity: 0.3; stroke-width: 0.6; filter: drop-shadow(0 0 2px rgba(192, 192, 192, 0.3)); }
+                50% { stroke-opacity: 0.8; stroke-width: 1.0; filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.7)); }
+            }
+            .nebula-cloud {
+                background: radial-gradient(circle at center, rgba(75, 0, 130, 0.25) 0%, rgba(26, 0, 51, 0.15) 40%, transparent 75%);
+                filter: blur(50px);
+                mix-blend-mode: screen;
+                animation: nebula-drift 30s ease-in-out infinite alternate, nebula-shimmer 12s linear infinite;
+            }
+            @keyframes nebula-drift {
+                0% { transform: translate(-5%, -5%) scale(1); }
+                100% { transform: translate(5%, 5%) scale(1.15); }
+            }
+            @keyframes nebula-shimmer {
+                0%, 100% { opacity: 0.4; }
+                50% { opacity: 0.8; }
+            }
+        }
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.01);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --nebula-speed: 120s;
+            --silver-sparkle: rgba(226, 232, 240, 0.6);
+            --purple-sparkle: rgba(139, 92, 246, 0.6);
+            --deep-violet: rgba(76, 29, 149, 0.8);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #05060f;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.7s ease, border-color 0.7s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        .glass-card:hover {
+            border-color: transparent;
+            background-clip: padding-box;
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2), 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(139, 92, 246, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            transition: background 0.7s ease;
+        }
+        .glass-card:hover::before {
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #4c1d95 100%);
+        }
+        .stardust-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--silver-sparkle) 1px, transparent 1px),
+                radial-gradient(circle at 70% 10%, var(--purple-sparkle) 1.5px, transparent 1.5px),
+                radial-gradient(circle at 40% 80%, var(--silver-sparkle) 1px, transparent 1px),
+                radial-gradient(circle at 90% 60%, var(--deep-violet) 2px, transparent 2px),
+                radial-gradient(circle at 10% 90%, var(--silver-sparkle) 1px, transparent 1px),
+                radial-gradient(circle at 80% 40%, #c4b5fd 1.5px, transparent 1.5px),
+                radial-gradient(circle at 50% 50%, var(--purple-sparkle) 1px, transparent 1px);
+            background-size: 120px 120px;
+            transform: translateZ(20px);
+        }
+        .glass-card .stardust-layer {
+            opacity: 1;
+            animation: stardust-drift 15s linear infinite;
+        }
+        @keyframes stardust-drift {
+            from { background-position: 0 0; }
+            to { background-position: 120px 120px; }
+        }
+        .silver-text {
+            background: linear-gradient(180deg, #FFFFFF 30%, #c4b5fd 70%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .reveal-section {
+            animation: fadeInUp 1.2s cubic-bezier(0.21, 0.6, 0.35, 1) forwards;
+        }
+        .nebula-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0c1f 0%, #05060f 100%);
+            overflow: hidden;
+        }
+        .nebula-cloud {
+            position: absolute;
+            width: 250vmax;
+            height: 250vmax;
+            top: -75vmax;
+            left: -75vmax;
+            filter: blur(120px);
+            mix-blend-mode: screen;
+            opacity: 0.5;
+            animation: nebula-drift var(--nebula-speed) linear infinite;
+            will-change: transform;
+        }
+        @keyframes nebula-drift {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .cloud-purple {
+            background: radial-gradient(circle at 40% 40%, rgba(88, 28, 135, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+        }
+        .cloud-indigo {
+            background: radial-gradient(circle at 20% 80%, rgba(30, 27, 75, 0.3) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(67, 56, 202, 0.25) 0%, transparent 50%);
+            animation-duration: 160s;
+            animation-direction: reverse;
+        }
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: star-twinkle var(--twinkle-duration) ease-in-out infinite;
+        }
+        .magnetic-target {
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(139, 92, 246, 0)); }
+            10% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6)); }
+            20% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.2)); }
+            30% { transform: scale(1.05); filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.4)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(139, 92, 246, 0)); }
+        }
+        .pulse-heartbeat {
+            animation: heartbeat 1s ease-in-out infinite;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display overflow-hidden">
+    <!-- ================= MUSIC ================= -->
+    <audio id="bgm" src="musik.mp3" loop></audio>
+
+    <!-- ================= SCENE 1 : OPENING ================= -->
+    <section id="scene-1" class="scene">
+        <div
+            class="relative min-h-screen w-full flex flex-col items-center justify-between bg-gradient-to-b from-[#0a0812] via-[#151022] to-[#0a0812] overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none z-0">
+                <div class="shooting-star"
+                    style="--star-top: 10%; --star-left: 20%; --star-angle: 45deg; --star-duration: 8s; --star-delay: 1s;">
+                </div>
+                <div class="shooting-star"
+                    style="--star-top: 30%; --star-left: 60%; --star-angle: 35deg; --star-duration: 12s; --star-delay: 4s;">
+                </div>
+                <div class="shooting-star"
+                    style="--star-top: 5%; --star-left: 80%; --star-angle: 40deg; --star-duration: 10s; --star-delay: 7s;">
+                </div>
+                <div class="shooting-star"
+                    style="--star-top: 50%; --star-left: 10%; --star-angle: 30deg; --star-duration: 15s; --star-delay: 2s;">
+                </div>
+                <div class="shooting-star"
+                    style="--star-top: 15%; --star-left: 40%; --star-angle: 42deg; --star-duration: 9s; --star-delay: 5s;">
+                </div>
+            </div>
+            <div class="absolute inset-0 star-field pointer-events-none"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80 pointer-events-none">
+            </div>
+            <main class="relative z-10 flex flex-col items-center justify-center flex-1 px-4 text-center">
+                <div class="mb-12 relative group">
+                    <div class="absolute inset-[-150%] nebula-cloud pointer-events-none z-0"></div>
+                    <div class="absolute inset-[-60%] pointer-events-none z-20">
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 20%; left: 30%; --twinkle-duration: 0.8s; --twinkle-delay: 0.1s;"></div>
+                        <div class="twinkle-star w-1 h-1"
+                            style="top: 25%; left: 70%; --twinkle-duration: 1.1s; --twinkle-delay: 0.5s;"></div>
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 45%; left: 15%; --twinkle-duration: 0.9s; --twinkle-delay: 0.2s;"></div>
+                        <div class="twinkle-star w-1 h-1"
+                            style="top: 60%; left: 85%; --twinkle-duration: 1.4s; --twinkle-delay: 0.3s;"></div>
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 75%; left: 40%; --twinkle-duration: 0.7s; --twinkle-delay: 0.8s;"></div>
+                        <div class="twinkle-star w-1 h-1"
+                            style="top: 15%; left: 55%; --twinkle-duration: 1.2s; --twinkle-delay: 1.5s;"></div>
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 85%; left: 65%; --twinkle-duration: 1.3s; --twinkle-delay: 0.2s;"></div>
+                        <div class="twinkle-star w-1 h-1"
+                            style="top: 40%; left: 90%; --twinkle-duration: 1.0s; --twinkle-delay: 1.1s;"></div>
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 10%; left: 10%; --twinkle-duration: 0.6s; --twinkle-delay: 0.4s;"></div>
+                        <div class="twinkle-star w-0.5 h-0.5"
+                            style="top: 90%; left: 20%; --twinkle-duration: 1.1s; --twinkle-delay: 0.6s;"></div>
+                    </div>
+                    <div class="absolute -top-32 -left-48 opacity-80 pointer-events-none z-10 hidden md:block">
+                        <svg class="overflow-visible" height="160" viewBox="0 0 160 100" width="160">
+                            <path class="constellation-line"
+                                d="M10 20 L40 25 L60 45 L80 48 L110 40 L140 35 L135 65 L105 70 L110 40" fill="none">
+                            </path>
+                            <circle class="constellation-star" cx="10" cy="20" r="1.5" style="animation-delay: 0.1s;">
+                            </circle>
+                            <circle class="constellation-star" cx="40" cy="25" r="1.5" style="animation-delay: 0.3s;">
+                            </circle>
+                            <circle class="constellation-star" cx="60" cy="45" r="1.8" style="animation-delay: 0.5s;">
+                            </circle>
+                            <circle class="constellation-star" cx="80" cy="48" r="2.2" style="animation-delay: 0.7s;">
+                            </circle>
+                            <circle class="constellation-star" cx="110" cy="40" r="2.0" style="animation-delay: 0.9s;">
+                            </circle>
+                            <circle class="constellation-star" cx="140" cy="35" r="1.8" style="animation-delay: 1.1s;">
+                            </circle>
+                            <circle class="constellation-star" cx="135" cy="65" r="1.8" style="animation-delay: 1.3s;">
+                            </circle>
+                            <circle class="constellation-star" cx="105" cy="70" r="1.5" style="animation-delay: 1.5s;">
+                            </circle>
+                        </svg>
+                    </div>
+                    <div
+                        class="size-32 md:size-40 rounded-full border border-silver/20 flex items-center justify-center relative overflow-hidden group moon-glow z-10">
+                        <div class="absolute inset-0 bg-gradient-to-br from-silver/20 to-transparent opacity-30"></div>
+                        <svg class="size-20 md:size-24 text-silver fill-current" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.27455 20.9097 6.80375 19.1414 5C21.0507 7.03043 22.2222 9.77803 22.2222 12.8C22.2222 18.2124 17.8346 22.6 12.4222 22.6C9.39999 22.6 6.6524 21.4285 4.62197 19.5192C6.42571 21.2875 8.89652 22.3778 11.6219 22.3778C17.1448 22.3778 21.6219 17.9006 21.6219 12.3778C21.6219 7.9734 18.7735 4.23275 14.8219 2.8728C14.1207 2.30256 13.1004 2 12 2Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="absolute -bottom-24 -right-40 opacity-80 pointer-events-none z-10 hidden md:block">
+                        <svg class="overflow-visible" height="180" viewBox="0 0 100 150" width="120">
+                            <circle class="constellation-star" cx="45" cy="75" r="1.8" style="animation-delay: 0.1s;">
+                            </circle>
+                            <circle class="constellation-star" cx="55" cy="73" r="1.8" style="animation-delay: 0.2s;">
+                            </circle>
+                            <circle class="constellation-star" cx="65" cy="71" r="1.8" style="animation-delay: 0.3s;">
+                            </circle>
+                            <path class="constellation-line" d="M30 30 L45 75 L35 120 M75 25 L65 71 L85 115"
+                                fill="none">
+                            </path>
+                            <circle class="constellation-star" cx="30" cy="30" r="2.5" style="animation-delay: 0.5s;">
+                            </circle>
+                            <circle class="constellation-star" cx="85" cy="115" r="2.5" style="animation-delay: 0.7s;">
+                            </circle>
+                            <circle class="constellation-star" cx="75" cy="25" r="1.5" style="animation-delay: 0.9s;">
+                            </circle>
+                            <circle class="constellation-star" cx="35" cy="120" r="1.5" style="animation-delay: 1.1s;">
+                            </circle>
+                        </svg>
+                    </div>
+                    <p class="mt-8 text-silver/60 text-xs tracking-[0.4em] uppercase font-medium relative z-10">Under
+                        the
+                        Infinite Sky</p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-4 relative z-10">
+                    <h1 class="font-serif-elegant text-5xl md:text-8xl tracking-tight glowing-silver italic">
+                        Julian <span class="text-3xl md:text-5xl font-light not-italic px-2">&amp;</span> Evelyn
+                    </h1>
+                    <div
+                        class="h-[1px] w-24 bg-gradient-to-r from-transparent via-silver/40 to-transparent mx-auto mt-6">
+                    </div>
+                </div>
+                <div class="mt-8 space-y-1 relative z-10">
+                    <p class="text-white/80 text-lg md:text-xl font-light tracking-widest uppercase">Tuesday, 30 June 2026
+                    </p>
+                    <p class="text-silver/40 text-sm font-normal tracking-normal italic">Open to explore the universe of
+                        our love</p>
+                </div>
+            </main>
+            <footer class="relative z-10 w-full pb-20 flex flex-col items-center gap-6">
+                <div class="flex flex-col items-center gap-4">
+                    <button id="OpenInvitation"
+                        class="OpenInvitation group relative flex items-center justify-center size-24 md:size-28 rounded-full border border-silver/30 bg-background-dark/40 backdrop-blur-sm transition-all hover:scale-105 hover:border-silver/60 pulse-silver">
+                        <span
+                            class="absolute inset-0 rounded-full border border-silver/10 animate-ping opacity-20"></span>
+                        <div class="flex flex-col items-center gap-1">
+                            <span
+                                class="material-symbols-outlined text-silver text-2xl group-hover:translate-y-[-2px] transition-transform">expand_less</span>
+                            <span
+                                class="text-silver text-[10px] md:text-xs font-bold uppercase tracking-widest">Open</span>
+                        </div>
+                    </button>
+                </div>
+            </footer>
+            <div
+                class="absolute bottom-[-10%] left-[-5%] size-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none">
+            </div>
+            <div
+                class="absolute top-[-10%] right-[-5%] size-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none">
+            </div>
+        </div>
+        <div class="hidden">
+            <img data-alt="Deep space nebula with soft violet glows"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHpwkriby9K9WZGiKniawTtEr7CfiiEMqLs2MHlF6h0wqoVgsaTLP43ILwR4vtmcqNaYYgE4gXduQn3WtpO7mNlbtajPytBDzWga-Dugonx57NywoftpFZSnJVuhfKdmHRyCSptkHUaSdc8IAdgQLFYXTqitbuZbSTF-_SUuoQq3pWObeB-CRXOrjGvuEV5z_BM9Gd5cZOq8YMrmaZY2PKTv2IFiGkTNilMnC_rTQyMfi_KfU6R1Q7rBa2M3cfTVOILYMTR6wMXAU" />
+            <img data-alt="Realistic high resolution starry night background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT7_sPefnXa0Tw2z0NjsGxvH-7qjZg8FX8ZMp2p4wsQe65QaE1iS0501fZmAUz1Qp8g8qfJaKvG5LLBiB5m7p9drxF2QacoNi_UlRgLzvWMJZ9j25pBfR_gowovvkCsnMdubCDclaL79AalJjFxK8A5I-CXNo5yOOYpHu18hFAe2jJ2-KvRd4_yazMnAccdHM9JVzVTL-zvJuGx-Z5bQI9q_oKcNGV1PKZW-V7mw7Z715s8sB9j8kgSPrzZ0irRwGxafYZpLPk5HY" />
+        </div>
+    </section>
+
+    <!-- ================= SCENE 2 : MAIN ================= -->
+    <section id="scene-2" class="scene hidden">
+        <div class="nebula-canvas">
+            <div class="nebula-cloud cloud-purple"></div>
+            <div class="nebula-cloud cloud-indigo"></div>
+            <div class="stars-container">
+                <div class="star" style="top: 15%; left: 25%; width: 2px; height: 2px; --twinkle-duration: 4s;"></div>
+                <div class="star" style="top: 45%; left: 85%; width: 1px; height: 1px; --twinkle-duration: 3s;"></div>
+                <div class="star" style="top: 75%; left: 15%; width: 2px; height: 2px; --twinkle-duration: 5s;"></div>
+                <div class="star" style="top: 25%; left: 65%; width: 1px; height: 1px; --twinkle-duration: 6s;"></div>
+                <div class="star" style="top: 85%; left: 55%; width: 2px; height: 2px; --twinkle-duration: 4.5s;"></div>
+                <div class="star" style="top: 10%; left: 90%; width: 1px; height: 1px; --twinkle-duration: 7s;"></div>
+                <div class="star" style="top: 60%; left: 40%; width: 1px; height: 1px; --twinkle-duration: 3.5s;"></div>
+                <div class="star" style="top: 35%; left: 5%; width: 2px; height: 2px; --twinkle-duration: 5.5s;"></div>
+                <div class="star" style="top: 95%; left: 95%; width: 1px; height: 1px; --twinkle-duration: 4s;"></div>
+                <div class="star" style="top: 55%; left: 75%; width: 2px; height: 2px; --twinkle-duration: 6.5s;"></div>
+            </div>
+        </div>
+        <main class="relative z-10">
+            <section class="relative min-h-screen flex items-center justify-center pt-20 reveal-section mb-10"
+                id="hero">
+                <div class="layout-content-container flex flex-col w-full px-4 md:max-w-[1200px] md:mx-auto">
+                    <div class="@container">
+                        <div class="@[480px]:p-4">
+                            <div class="magnetic-target flex min-h-[100svh] md:min-h-[700px] flex-col gap-8 items-center justify-center p-8 relative overflow-hidden glass-card rounded-[2.5rem]">
+                                <div class="stardust-layer"></div>
+                                <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-center bg-cover"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBusLd4r1m4lSMObq_e94X1Q4igrvkUPdgvvbbsxkYFH0yRPjYTYb1nSUYhQeooTM1AVIux7HeV4WUJYG9R3BYKWT0Bzv1JU64GULPY5EsOkqQbT1luBmTzbSxTnBT0NDu_-qhR7dhp_MqQcA5UG6GY5iWvR7JgeHyNd4xNRgBb72LDHH0fCh6JMc-LOH2HPB4V6pNDghtPy_BqvldGIx9dITNRmfKLS9jE92ZwFxefG_KJellkx3t4VXn_II_SKeuXH3YfWy3kRs4");'>
+                                </div>
+                                <div class="flex flex-col gap-4 text-center z-10">
+                                    <span
+                                        class="text-primary text-xs md:text-sm font-bold tracking-[0.5em] uppercase">The
+                                        Celestial Union</span>
+                                    <h1
+                                        class="text-white text-6xl md:text-8xl font-black leading-tight tracking-[-0.033em] silver-text">
+                                        Julian &amp; Evelyn
+                                    </h1>
+                                    <p
+                                        class="text-white/60 text-lg md:text-xl font-light tracking-[0.1em] max-w-2xl mx-auto italic">
+                                        "Across space and time, our souls align."
+                                    </p>
+                                    <div class="mt-8 flex flex-col items-center gap-4">
+                                        <span class="text-white/90 text-sm font-bold tracking-[0.3em] uppercase">June 30, 2026</span>
+                                        <div class="h-[1px] w-24 bg-primary/40"></div>
+                                    </div>
+                                </div>
+                                <!-- timer Countdown -->
+                                <div class="flex flex-col gap-4 text-center z-10"
+                                    style="animation-delay: 0.1s;">
+                                    <div class="max-w-[800px] w-full px-4">
+                                        <div class="magnetic-target glass-card p-12 rounded-[3rem] text-center bg-black">
+                                            <div class="stardust-layer"></div>
+                                            <div class="relative z-10 flex flex-col items-center gap-8">
+                                                <p
+                                                    class="text-white text-xs md:text-sm font-bold tracking-[0.5em] uppercase">
+                                                    The Countdown to Eternity</p>
+                                                <div class="flex flex-wrap justify-center gap-6 md:gap-12">
+                                                    <div class="flex flex-col items-center">
+                                                        <span
+                                                            class="text-4xl md:text-6xl font-light tracking-tighter text-white"
+                                                            id="days">00</span>
+                                                        <span
+                                                            class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mt-2">Days</span>
+                                                    </div>
+                                                    <div class="text-white/10 text-4xl font-thin hidden md:block pt-2">/
+                                                    </div>
+                                                    <div class="flex flex-col items-center">
+                                                        <span
+                                                            class="text-4xl md:text-6xl font-light tracking-tighter text-white"
+                                                            id="hours">00</span>
+                                                        <span
+                                                            class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mt-2">Hours</span>
+                                                    </div>
+                                                    <div class="text-white/10 text-4xl font-thin hidden md:block pt-2">/
+                                                    </div>
+                                                    <div class="flex flex-col items-center">
+                                                        <span
+                                                            class="text-4xl md:text-6xl font-light tracking-tighter text-white"
+                                                            id="minutes">00</span>
+                                                        <span
+                                                            class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mt-2">Minutes</span>
+                                                    </div>
+                                                    <div class="text-white/10 text-4xl font-thin hidden md:block pt-2">/
+                                                    </div>
+                                                    <div class="flex flex-col items-center">
+                                                        <span
+                                                            class="text-4xl md:text-6xl font-light tracking-tighter pulse-heartbeat text-primary"
+                                                            id="seconds">00</span>
+                                                        <span
+                                                            class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/30 mt-2">Seconds</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-40 flex justify-center reveal-section" style="animation-delay: 0.2s;">
+                <div class="max-w-[800px] text-center px-4">
+                    <span class="material-symbols-outlined text-primary/40 text-5xl mb-8">star_rate</span>
+                    <h2 class="silver-text text-4xl md:text-6xl font-bold leading-tight px-4 italic">
+                        "In all the infinite universe, it was always meant to be you."
+                    </h2>
+                    <p class="text-white/20 mt-10 font-light tracking-[0.4em] uppercase text-[10px]">Written in the
+                        Stars
+                    </p>
+                </div>
+            </section>
+            <section class="py-32 flex justify-center reveal-section" id="events" style="animation-delay: 0.3s;">
+                <div class="layout-content-container flex flex-col w-full flex-1 px-4 md:max-w-[1000px] md:mx-auto">
+                    <div class="flex flex-col items-center mb-20">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="material-symbols-outlined text-primary/40 text-xl">storm</span>
+                            <h2 class="text-white text-4xl font-bold tracking-[0.2em] uppercase">The Occasion</h2>
+                            <span class="material-symbols-outlined text-primary/40 text-xl">storm</span>
+                        </div>
+                        <div class="h-1 w-16 bg-primary/40 rounded-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="magnetic-target glass-card rounded-[2rem] overflow-hidden group">
+                            <div class="stardust-layer"></div>
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/10] bg-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbDP51TAdIlN237TQI3Rq0etSq7kc_Ra7swe96R2N1UNpos-8xl0sfZIx6f4MicwkFyXlGVLRAIkfJ2NARLSDtTE8Fmn1W1oSwPol9bXzzxeewoT41Knrc2EbaR_Bo7rBiGKw1o58x-Vigaub5QpRuiQleXySU7KaJG089fquk94gkp47WnfMJInPAtm-vkK79T_UFi9C0KBqGXmQcrXJ6gQDBIxma9jRSoGXP_uj8qyANYFWt76JTEYcjrhX-iY080YyFOWmSpV8");'>
+                            </div>
+                            <div class="p-10 relative z-10">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div>
+                                        <h3 class="text-white text-3xl font-bold mb-2">Akad Nikah</h3>
+                                        <p class="text-primary text-[10px] font-bold uppercase tracking-[0.3em]">The
+                                            Sacred
+                                            Vow</p>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors duration-500">flare</span>
+                                </div>
+                                <div class="space-y-4 mb-10">
+                                    <div class="flex items-center gap-4 text-white/50">
+                                        <span class="material-symbols-outlined text-base">schedule</span>
+                                        <span class="text-xs font-medium uppercase tracking-widest">09:00 AM — 11:00
+                                            AM</span>
+                                    </div>
+                                    <div class="flex items-center gap-4 text-white/50">
+                                        <span class="material-symbols-outlined text-base">location_on</span>
+                                        <span class="text-xs font-medium uppercase tracking-widest leading-loose">Grand
+                                            Ballroom, Starry Plaza Hotel</span>
+                                    </div>
+                                </div>
+                                <button
+                                    class="btn-map w-full py-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all text-[10px] font-bold uppercase tracking-[0.2em] text-white"
+                                    data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">
+                                    View Location
+                                </button>
+                            </div>
+                        </div>
+                        <div class="magnetic-target glass-card rounded-[2rem] overflow-hidden group">
+                            <div class="stardust-layer"></div>
+                            <div class="w-full bg-center bg-no-repeat aspect-[16/10] bg-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIa22nuoA2zvGIiYvL1jwiNqOhZLTr_bUCgTc_Mgi-MLp7coAWjipOPUr-rQhBgFYisFBeeSnkSKKJrbINjjP69uGPvmeuu-ya2gbKAytlXP85xB_3jThMzSH9vMJZbKjnHbMOKrZ9xQT3dVyCOXQ6ir9-4C1m1Oc2LZQuuq3nQ3kkHTBIVSE2LWW3XQpsZJfuYOovfTzTIgGjJnEbI2DhiyjIPo48I7LI5_ifsb67W6ib9ZISRPvdMslqwA9dK65_rpMaOKY4Wd4");'>
+                            </div>
+                            <div class="p-10 relative z-10">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div>
+                                        <h3 class="text-white text-3xl font-bold mb-2">Resepsi</h3>
+                                        <p class="text-primary text-[10px] font-bold uppercase tracking-[0.3em]">Grand
+                                            Celebration</p>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors duration-500">nights_stay</span>
+                                </div>
+                                <div class="space-y-4 mb-10">
+                                    <div class="flex items-center gap-4 text-white/50">
+                                        <span class="material-symbols-outlined text-base">schedule</span>
+                                        <span class="text-xs font-medium uppercase tracking-widest">06:00 PM — 09:00
+                                            PM</span>
+                                    </div>
+                                    <div class="flex items-center gap-4 text-white/50">
+                                        <span class="material-symbols-outlined text-base">location_on</span>
+                                        <span class="text-xs font-medium uppercase tracking-widest leading-loose">Grand
+                                            Ballroom, Starry Plaza Hotel</span>
+                                    </div>
+                                </div>
+                                <button
+                                    class="btn-map w-full py-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-all text-[10px] font-bold uppercase tracking-[0.2em] text-white"
+                                    data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">
+                                    View Location
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-32 flex justify-center reveal-section" id="gift" style="animation-delay: 0.4s;">
+                <div class="layout-content-container flex flex-col w-full flex-1 px-4 text-center md:max-w-[640px] md:mx-auto">
+                    <div class="flex flex-col items-center mb-16">
+                        <span class="material-symbols-outlined text-primary/40 text-4xl mb-6">card_giftcard</span>
+                        <h2 class="text-white text-4xl font-bold tracking-[0.2em] mb-4 uppercase">Love &amp; Gratitude
+                        </h2>
+                        <p class="text-white/40 font-light text-sm italic tracking-wide">Your blessings are the greatest
+                            gift. Should you wish to share more, we provide these details.</p>
+                    </div>
+                    <div class="space-y-8">
+                        <div
+                            class="magnetic-target glass-card p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8 group">
+                            <div class="stardust-layer"></div>
+                            <div class="text-center md:text-left relative z-10">
+                                <p class="text-white/30 text-[9px] font-bold uppercase tracking-[0.3em] mb-2">Bank
+                                    Central
+                                    Asia</p>
+                                <p id="norek1" class="text-white text-2xl font-bold tracking-[0.1em] mb-1">8820 1234 567
+                                </p>
+                                <p class="text-white/50 text-[10px] uppercase tracking-widest">a.n Julian</p>
+                            </div>
+                            <button data-copy="norek1"
+                                class="relative z-10 bg-primary/5 hover:bg-primary/20 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-xl transition-all border border-primary/20">
+                                Copy Details
+                            </button>
+                        </div>
+                        <div
+                            class="magnetic-target glass-card p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8 group">
+                            <div class="stardust-layer"></div>
+                            <div class="text-center md:text-left relative z-10">
+                                <p class="text-white/30 text-[9px] font-bold uppercase tracking-[0.3em] mb-2">Digital
+                                    Wallet (Gopay)
+                                </p>
+                                <p id="norek2" class="text-white text-2xl font-bold tracking-[0.1em] mb-1">0812 3456
+                                    7890</p>
+                                <p class="text-white/50 text-[10px] uppercase tracking-widest">a.n Evelyn</p>
+                            </div>
+                            <button data-copy="norek2"
+                                class="relative z-10 bg-primary/5 hover:bg-primary/20 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-xl transition-all border border-primary/20">
+                                Copy Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-32 flex justify-center reveal-section" id="guestbook" style="animation-delay: 0.5s;">
+                <div class="layout-content-container flex flex-col w-full flex-1 px-4 md:max-w-[1100px] md:mx-auto">
+                    <div class="flex flex-col items-center mb-20">
+                        <h2 class="text-white text-3xl md:text-4xl font-bold tracking-[0.12em] md:tracking-[0.2em] uppercase mb-4 text-center">Celestial Wishes</h2>
+                        <div class="h-1 w-16 bg-primary/40 rounded-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="magnetic-target glass-card p-8 rounded-[2.5rem] flex flex-col gap-6">
+                            <div class="stardust-layer"></div>
+                            <p class="relative z-10 text-white/70 text-base italic font-light leading-relaxed">"Wishing
+                                you
+                                both a lifetime of love. You two are truly made for each other in the stars!"</p>
+                            <div class="relative z-10 flex items-center gap-4 mt-auto">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs border border-primary/20">
+                                    JD</div>
+                                <div>
+                                    <p class="text-white text-[11px] font-bold uppercase tracking-widest">John &amp;
+                                        Jane
+                                        Doe</p>
+                                    <p class="text-white/30 text-[9px] uppercase tracking-widest">Family Friend</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="magnetic-target glass-card p-8 rounded-[2.5rem] flex flex-col gap-6 md:translate-y-12">
+                            <div class="stardust-layer"></div>
+                            <p class="relative z-10 text-white/70 text-base italic font-light leading-relaxed">
+                                "Congratulations on your beautiful journey! May your days be as bright as the midnight
+                                stars."</p>
+                            <div class="relative z-10 flex items-center gap-4 mt-auto">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs border border-primary/20">
+                                    SM</div>
+                                <div>
+                                    <p class="text-white text-[11px] font-bold uppercase tracking-widest">Sarah Miller
+                                    </p>
+                                    <p class="text-white/30 text-[9px] uppercase tracking-widest">Best Friend</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="magnetic-target glass-card p-8 rounded-[2.5rem] flex flex-col gap-6">
+                            <div class="stardust-layer"></div>
+                            <p class="relative z-10 text-white/70 text-base italic font-light leading-relaxed">"To a
+                                wonderful couple, may your marriage be blessed with endless joy and celestial wonder."
+                            </p>
+                            <div class="relative z-10 flex items-center gap-4 mt-auto">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs border border-primary/20">
+                                    RK</div>
+                                <div>
+                                    <p class="text-white text-[11px] font-bold uppercase tracking-widest">Robert King
+                                    </p>
+                                    <p class="text-white/30 text-[9px] uppercase tracking-widest">Colleague</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="magnetic-target mt-40 glass-card p-12 rounded-[3rem] max-w-[700px] mx-auto w-full relative group">
+                        <div class="stardust-layer"></div>
+                        <h4
+                            class="relative z-10 text-white text-center font-bold mb-10 uppercase tracking-[0.4em] text-sm silver-text">
+                            Send Your Message</h4>
+                        <form class="relative z-10 space-y-6">
+                            <input
+                                class="w-full bg-white/[0.03] border-white/10 rounded-2xl px-6 py-5 text-xs focus:border-primary/50 focus:ring-0 text-white placeholder:text-white/20 uppercase tracking-[0.2em]"
+                                placeholder="Your Name" type="text" />
+                            <textarea
+                                class="w-full bg-white/[0.03] border-white/10 rounded-2xl px-6 py-5 text-xs focus:border-primary/50 focus:ring-0 text-white placeholder:text-white/20 uppercase tracking-[0.2em]"
+                                placeholder="Write your cosmic wish..." rows="5"></textarea>
+                            <button
+                                class="w-full bg-primary py-5 rounded-2xl font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-primary/80 transition-all shadow-2xl shadow-primary/20 text-white"
+                                type="submit">Send Wish</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <footer class="py-32 text-center reveal-section">
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <span class="material-symbols-outlined text-primary/10 text-sm">star</span>
+                    <span class="material-symbols-outlined text-primary/40 text-lg">star</span>
+                    <span class="material-symbols-outlined text-primary/10 text-sm">star</span>
+                </div>
+                <p class="text-white/30 text-[11px] font-bold uppercase tracking-[0.6em]">Our love, written among the
+                    stars at celestial midnight.</p>
+                <p class="text-white/10 text-[10px] mt-4 italic font-light tracking-[0.3em]">✨Crafted with stardust and
+                    love. SNA Digital</p>
+            </footer>
+        </main>
+    </section>
+    <script>
+        // scene
+        const openBtn = document.getElementById('OpenInvitation');
+        const scene1 = document.getElementById('scene-1');
+        const scene2 = document.getElementById('scene-2');
+        const bgm = document.getElementById('bgm');
+
+        openBtn.addEventListener('click', () => {
+
+            // play music (mobile friendly)
+            bgm.play().catch(() => { });
+
+            // animasi keluar scene 1
+            scene1.classList.add('scene-hide');
+
+            setTimeout(() => {
+                scene1.classList.add('hidden');
+                scene2.classList.remove('hidden');
+
+                // reset animasi scene 2
+                requestAnimationFrame(() => {
+                    scene2.classList.remove('scene-hide');
+                });
+
+                // unlock scroll (scene 2 is long)
+                document.body.classList.remove('overflow-hidden');
+
+            }, 700);
+        });
+
+        // timer
+        document.querySelectorAll('.magnetic-target').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                const translateX = (x - centerX) / 15;
+                const translateY = (y - centerY) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${translateX}px, ${translateY}px, 15px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)`;
+            });
+        });
+        const targetDate = new Date("June 30, 2026 00:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Open maps
+        document.querySelectorAll('.btn-map').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.dataset.map;
+                if (url) {
+                    window.open(url, '_blank');
+                }
+            });
+        });
+
+        // copy norek
+        document.querySelectorAll("button[data-copy]").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const targetId = button.dataset.copy;
+                const el = document.getElementById(targetId);
+
+                if (!el) return;
+
+                const text = el.innerText.trim();
+
+                navigator.clipboard.writeText(text).then(() => {
+
+                    const icon = button.querySelector(".material-symbols-outlined");
+
+                    if (icon) {
+                        const old = icon.textContent;
+                        icon.textContent = "check";
+
+                        setTimeout(() => {
+                            icon.textContent = old;
+                        }, 1200);
+                    }
+
+                });
+
+            });
+
+        });
+
+        // Animation 
+        document.querySelectorAll('.magnetic-target').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                const translateX = (x - centerX) / 15;
+                const translateY = (y - centerY) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${translateX}px, ${translateY}px, 15px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)`;
+            });
+        });        
+    </script>
+</body>
+
+</html>

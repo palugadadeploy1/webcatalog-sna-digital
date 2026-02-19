@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Amir &amp; Layla - Open Invitation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Dancing+Script:wght@600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec3713",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221310",
+                        "terracotta": "#ec3713",
+                        "sand": "#f4ede8",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "script": ["Dancing Script", "cursive"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .scene {
+            position: fixed;
+            inset: 0;
+            overflow-y: auto;
+            background: inherit;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(40px);
+            transition: all .8s ease;
+            z-index: 0;
+        }
+
+        .scene.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+            z-index: 10;
+        }
+
+        .boho-texture {
+            background-color: #fcf9f8;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBysfbXhe8C5MgZ9a2dMtF3HnYFVIqEwnMao1da6gdcZz5UUSWoRLHGdBQuveDajhzXoEm-znolriD8YafhU2gcY9gvS-Q4q0g95143ee26CYxMFoGOJ9SDM3cUvuEJZCUqwT3Zh10A3OeAnwB6y2-zvTAwBNmt6l3-pj_kDT8Q6HcLPQeQEOTAUC7uu2aNG_kijyQNM_huuxGMUzzVuhcHDPJgmdPJy3YotPtW0RX8Uc9CtNAfco9G5ycT40HfuB7c9qVA8SJMCtWq)
+        }
+
+        .organic-border {
+            padding: 1rem;
+            position: relative
+        }
+
+        .organic-border::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 1.5rem;
+            pointer-events: none
+        }
+
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 200px;
+            gap: 16px;  
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        .masonry-grid>div {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            width: 100%;
+            min-height: 180px;
+        }
+
+        .masonry-item-tall {
+            grid-row: span 2;
+        }
+    </style>
+</head>
+
+<body class="dark:bg-background-dark font-display text-[#1b100d] transition-colors duration-300">
+    <!-- audio -->
+    <audio id="bg-music" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+    <!-- SCENE 1 : OPENING -->
+    <section id="scene-1" class="scene active">
+        <!-- Main Layout Container -->
+        <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light/80">
+            <!-- Hero Section / Opening Scene -->
+            <main class="flex-1 flex items-center justify-center px-4 py-10">
+                <div
+                    class="max-w-[1100px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white rounded-3xl">
+                    <!-- Image Side with Botanical Border Effect -->
+                    <div class="relative group order-1 lg:order-1 flex justify-center">
+                        <div class="relative p-4 md:p-8">
+                            <!-- Hand-drawn leaf decorations (SVG) -->
+                            <div class="absolute -top-4 -left-4 w-24 h-24 text-[#9a594c]/20 z-10 pointer-events-none">
+                                <svg fill="currentColor" viewbox="0 0 100 100">
+                                    <path d="M20,80 Q30,50 60,40 Q40,30 20,10 Q10,40 20,80 Z"></path>
+                                    <path d="M40,90 Q50,60 80,50 Q60,40 40,20 Q30,50 40,90 Z" opacity="0.6"></path>
+                                </svg>
+                            </div>
+                            <div
+                                class="absolute -bottom-6 -right-6 w-32 h-32 text-primary/10 z-10 pointer-events-none rotate-180">
+                                <svg fill="currentColor" viewbox="0 0 100 100">
+                                    <path d="M20,80 Q30,50 60,40 Q40,30 20,10 Q10,40 20,80 Z"></path>
+                                    <path d="M40,90 Q50,60 80,50 Q60,40 40,20 Q30,50 40,90 Z" opacity="0.6"></path>
+                                </svg>
+                            </div>
+                            <!-- Main Photo -->
+                            <div
+                                class="relative z-0 overflow-hidden rounded-xl shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                <img alt="Couple in a warm bohemian landscape"
+                                    class="w-full h-[500px] md:h-[650px] object-cover"
+                                    data-alt="Couple embracing in a warm-toned desert landscape"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuClfhaldMt5zQtlZ2MGFJIjDoOSRlofROh5f7_mt7p--hXEjiTe3zOGd_zYbh0PaEB-UcamS1MkZnvKVkqW2cy08lxXUSGEHsNhFpPyxwRUlGP62T3O3uXpgEkdsoUSCuBhcJXS7RMzRmKJH2a6dpaNCSHDZ-CD6scZhdvpVJNjKZ83P_R1WNLOexyMZ_21A8P8Ieb_vyT2tu4qkRU79DgXukN1iO0a3_YS4LFfRFuGdfHaOyfACzzp5Gj3UsPBqbBU4kv-vwTLZOEH" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Text Side -->
+                    <div
+                        class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 order-2 lg:order-2">
+                        <div class="space-y-4">
+                            <span class="text-primary font-semibold tracking-[0.2em] uppercase text-xs md:text-sm">The
+                                Wedding of</span>
+                            <h1
+                                class="text-[#1b100d] dark:text-white font-script text-6xl md:text-8xl leading-none py-2">
+                                Amir &amp; Layla
+                            </h1>
+                            <div class="flex items-center gap-4 justify-center lg:justify-start">
+                                <div class="h-px w-8 bg-primary/30"></div>
+                                <p
+                                    class="text-[#9a594c] dark:text-[#f4ede8]/80 text-lg md:text-xl font-light tracking-wide uppercase">
+                                    Tuesday, 30th June 2026
+                                </p>
+                                <div class="h-px w-8 bg-primary/30"></div>
+                            </div>
+                        </div>
+                        <div class="max-w-md">
+                            <p
+                                class="text-[#1b100d]/70 dark:text-white/60 leading-relaxed font-light text-base md:text-lg">
+                                We request the honor of your presence as we celebrate our love and begin our new journey
+                                together in the heart of the valley.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center gap-6 pt-4">
+                            <button id="btn-open"
+                                class="group relative flex min-w-[220px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-primary text-white text-lg font-bold leading-normal tracking-[0.05em] transition-all hover:bg-[#d12f0f] hover:shadow-xl hover:-translate-y-1">
+                                <span class="truncate">Open Invitation</span>
+                                <span
+                                    class="material-symbols-outlined ml-2 transition-transform group-hover:translate-x-1">arrow_forward</span>
+                            </button>
+                            <div class="flex items-center gap-2 text-[#9a594c] text-sm italic">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                                <span>Joshua Tree, California</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Texture Overlays -->
+            <div class="fixed inset-0 pointer-events-none opacity-5 mix-blend-multiply boho-texture z-50"></div>
+        </div>
+    </section>
+
+    <!-- SCENE 2 : MAIN CONTENT -->
+    <section id="scene-2" class="scene">
+        <main class="bg-background-light layout-container flex flex-col items-center">
+            <!-- Hero Quote Section -->
+            <section class="max-w-[960px] w-full px-6 py-20 flex flex-col items-center">
+                <div class="text-primary/40 mb-6">
+                    <span class="material-symbols-outlined text-5xl">format_quote</span>
+                </div>
+                <h1
+                    class="font-serif italic text-[#1b120d] dark:text-white tracking-light text-[32px] md:text-[42px] font-medium leading-tight text-center pb-8">
+                    "Once in a while, right in the middle of an ordinary life, love gives us a fairy tale."
+                </h1>
+                <div class="w-24 h-px bg-primary/30"></div>
+            </section>
+            <!-- Couple Profiles Section -->
+            <section class="max-w-[960px] w-full px-6 py-12" id="couple">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Groom -->
+                    <div
+                        class="flex flex-col items-center gap-6 p-8 rounded-3xl bg-primary/5 dark:bg-white/5 border border-primary/10">
+                        <div class="relative">
+                            <div
+                                class="absolute inset-0 rounded-full border-2 border-dashed border-primary/40 animate-[spin_20s_linear_infinite]">
+                            </div>
+                            <div class="m-2 bg-center bg-no-repeat aspect-square bg-cover rounded-full size-48 md:size-56 shadow-xl"
+                                data-alt="Portrait of the handsome groom"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOetgCShhK94YQwhcXAb9zSs3DCuH3VV75RlH3j2EYJxIHHMyw4BagEyH0sTVtEk6l0HUpH7Z00z8Om5Scg52LHkZD140RSjBd8c2LDBr3HNCjW9WMhQW-_4Y8d1XYtoz2JrXghFIZSmyD27JAUAn1odRBNINiUxfVakhW6cLIbkZB21vh0uaZm2g_A0u5e50CT5tely9lqItn0Pz8MBRqnUeyWqpqOC1G2FMSi5b7sIjPCUVFtgfixryO2mTkSnIa3SHWe5eZT9cN");'>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h2 class="font-serif text-3xl font-bold text-[#1b120d] dark:text-white">The Groom Name</h2>
+                            <p class="text-primary font-medium mt-1">@groom_handle</p>
+                            <p class="text-[#9a634c] dark:text-gray-400 text-sm mt-4 leading-relaxed">
+                                Son of Mr. Father &amp; Mrs. Mother<br />
+                                From Jakarta, Indonesia
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Bride -->
+                    <div
+                        class="flex flex-col items-center gap-6 p-8 rounded-3xl bg-primary/5 dark:bg-white/5 border border-primary/10">
+                        <div class="relative">
+                            <div
+                                class="absolute inset-0 rounded-full border-2 border-dashed border-primary/40 animate-[spin_20s_linear_infinite] direction-reverse">
+                            </div>
+                            <div class="m-2 bg-center bg-no-repeat aspect-square bg-cover rounded-full size-48 md:size-56 shadow-xl"
+                                data-alt="Portrait of the beautiful bride"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZV5BMq2Gz2w-HJ09-iCAoHGp4n4KrsMzNWU_40t8hRrQmtLsGABI8xui_rbJpxuOXVoQAas52AecWcBTauACKVFmNtoEreeOxKXMPLXnmKeXSbbrYw91GBnjzFAvHhwj3S22nsCUsB4IXojoJ2lFklSaAWPdoFD2cQEiL5cWXILGkJo4JB-DX9q8ixZVViBj6l-IBMo_M91goYz7DWMFvH-8EkQVDMxdQTCqkg9mj6cYNa5C-2JMV3n1IbhVGVDLu4Rq_-GX1eVZg");'>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h2 class="font-serif text-3xl font-bold text-[#1b120d] dark:text-white">The Bride Name</h2>
+                            <p class="text-primary font-medium mt-1">@bride_handle</p>
+                            <p class="text-[#9a634c] dark:text-gray-400 text-sm mt-4 leading-relaxed">
+                                Daughter of Mr. Father &amp; Mrs. Mother<br />
+                                From Bali, Indonesia
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Countdown Timer -->
+            <section class="max-w-[960px] w-full px-2 py-16 flex flex-col items-center bg-white rounded-3xl">
+                <h3 class="text-sm uppercase tracking-widest text-primary font-bold mb-8">Save the Date</h3>
+                <div class="flex gap-4 w-full max-w-2xl">
+                    <div class="flex grow basis-0 flex-col items-center gap-3">
+                        <div
+                            class="flex h-20 w-full items-center justify-center rounded-2xl bg-[#f3ebe7] dark:bg-white/10 shadow-sm border border-primary/5">
+                            <p id="cd-days" class="text-primary text-3xl font-bold">00</p>
+                        </div>
+                        <p class="text-[#1b120d] dark:text-gray-300 text-xs font-bold uppercase tracking-tighter">Days
+                        </p>
+                    </div>
+                    <div class="flex grow basis-0 flex-col items-center gap-3">
+                        <div
+                            class="flex h-20 w-full items-center justify-center rounded-2xl bg-[#f3ebe7] dark:bg-white/10 shadow-sm border border-primary/5">
+                            <p id="cd-hours" class="text-primary text-3xl font-bold">00</p>
+                        </div>
+                        <p class="text-[#1b120d] dark:text-gray-300 text-xs font-bold uppercase tracking-tighter">Hours
+                        </p>
+                    </div>
+                    <div class="flex grow basis-0 flex-col items-center gap-3">
+                        <div
+                            class="flex h-20 w-full items-center justify-center rounded-2xl bg-[#f3ebe7] dark:bg-white/10 shadow-sm border border-primary/5">
+                            <p id="cd-minutes" class="text-primary text-3xl font-bold">00</p>
+                        </div>
+                        <p class="text-[#1b120d] dark:text-gray-300 text-xs font-bold uppercase tracking-tighter">
+                            Minutes</p>
+                    </div>
+                    <div class="flex grow basis-0 flex-col items-center gap-3">
+                        <div
+                            class="flex h-20 w-full items-center justify-center rounded-2xl bg-[#f3ebe7] dark:bg-white/10 shadow-sm border border-primary/5">
+                            <p id="cd-seconds" class="text-primary text-3xl font-bold">00</p>
+                        </div>
+                        <p class="text-[#1b120d] dark:text-gray-300 text-xs font-bold uppercase tracking-tighter">
+                            Seconds</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Event Details -->
+            <section class="max-w-[960px] w-full px-6 py-12" id="event">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Akad -->
+                    <div
+                        class="bg-white dark:bg-white/5 p-8 rounded-3xl shadow-sm border border-primary/10 flex flex-col items-center text-center">
+                        <div class="bg-primary/10 p-4 rounded-full text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">auto_awesome</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Akad Nikah</h3>
+                        <p class="text-primary font-bold mb-4">Tuesday, 30 June 2026</p>
+                        <div class="space-y-1 mb-6 text-[#9a634c] dark:text-gray-400">
+                            <p class="flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm">schedule</span> 08:00 AM - 10:00 AM
+                            </p>
+                            <p class="flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm">location_on</span> The Grand Ballroom,
+                                Jakarta
+                            </p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055"
+                            target="_blank" rel="noopener"
+                            class="bg-primary text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-primary/90 transition-colors">
+                            <span class="material-symbols-outlined text-lg">map</span> Open Maps
+                        </a>
+                    </div>
+                    <!-- Resepsi -->
+                    <div
+                        class="bg-white dark:bg-white/5 p-8 rounded-3xl shadow-sm border border-primary/10 flex flex-col items-center text-center">
+                        <div class="bg-primary/10 p-4 rounded-full text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">celebration</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Resepsi</h3>
+                        <p class="text-primary font-bold mb-4">Tuesday, 30 June 2026</p>
+                        <div class="space-y-1 mb-6 text-[#9a634c] dark:text-gray-400">
+                            <p class="flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm">schedule</span> 11:00 AM - 02:00 PM
+                            </p>
+                            <p class="flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-sm">location_on</span> The Grand Ballroom,
+                                Jakarta
+                            </p>
+                        </div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055"
+                            target="_blank" rel="noopener"
+                            class="bg-primary text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-primary/90 transition-colors">
+                            <span class="material-symbols-outlined text-lg">map</span> Open Maps
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- Love Story Timeline -->
+            <section class="max-w-[960px] w-full px-6 py-16" id="story">
+                <h3 class="font-serif text-3xl font-bold text-center mb-16">Our Love Story</h3>
+                <div class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-px bg-dashed bg-primary/20"></div>
+                    <div class="space-y-12">
+                        <!-- Milestone 1 -->
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                            <div class="md:w-1/2 md:text-right">
+                                <p class="text-primary font-bold text-lg mb-2">2020 - First Met</p>
+                                <p class="text-[#9a634c] dark:text-gray-400">A chance encounter at a local coffee shop
+                                    in Senopati started everything. Just a simple hello and a shared love for jazz
+                                    music.</p>
+                            </div>
+                            <div
+                                class="absolute left-1/2 -translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
+                            </div>
+                            <div class="md:w-1/2">
+                                <div class="rounded-2xl overflow-hidden h-40 w-full bg-center bg-cover"
+                                    data-alt="Two people drinking coffee at a cozy cafe"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWDkjzcaxdZHE18zKe1s1aSlEgVbW-sEh90urY1k6JACnZCHg_3bkUg3qsDyhvSsY7y5WBRurlikg0TU7iWEYlJCs9p4c4w2GcRI5DkfZRVCAoHgfk2dB9ohR5ExidgUjoX4uBbh1_u5dpt2tNL4P8qx9z3EQdPIhGwPFKs7L77ZIozbLglm7PL5_yQtdCzAHMNTLrT4HSiOrCxq--JiQaAv0bkdTfmN55fpnmokzo7kwCnLCgrrGre4rklQEJwmyfXYTrko0FWA4-');">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Milestone 2 -->
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-8 relative">
+                            <div class="md:w-1/2">
+                                <p class="text-primary font-bold text-lg mb-2">2025 - The Proposal</p>
+                                <p class="text-[#9a634c] dark:text-gray-400">Under the starlit sky of Ubud, Bali, he got
+                                    down on one knee. It was the easiest 'Yes' she ever said.</p>
+                            </div>
+                            <div
+                                class="absolute left-1/2 -translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
+                            </div>
+                            <div class="md:w-1/2">
+                                <div class="rounded-2xl overflow-hidden h-40 w-full bg-center bg-cover"
+                                    data-alt="Engagement ring box opened at sunset"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTWZ2ufxYtd8Jk9hvObIw4ywSYBg78zI-F5NTYfkOFdTkBCzLXKN95vL6TAB3tTwPBPhMk6KPB9Ys93Xe0NopasLEN3F2e2y8h6ep42xTqLst8FGpvwYDALDVKA2bQAUeBi-k88hW9b7oC1LavSclVWni9hw7HrfqNv_ECL7vvTuGay1SMSvLI18XXs2zuIhIIb7CqsU5ED44bwO9d7GgHXVOdM7E8lzvDNS1qVqszOPs4uWNv2i972ROAzjo-FQgwv-BaX33TEZKo');">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Masonry Photo Gallery -->
+            <section class="max-w-[960px] w-full px-6 py-16" id="gallery">
+                <h3 class="font-serif text-3xl font-bold text-center mb-12">Photo Gallery</h3>
+                <div class="masonry-grid">
+                    <div class="masonry-item-tall rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Wedding couple standing in a field"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoVG0Sx8gCfojjpD0EXOfvm7av1Y-AogJVHvHfdu0KXIOW0UMDpwxSjMgOaDXekvYEL7JlBFHHsA7hrX6Cq4VjYtw4W3wZ900wlX92nVf2TQlbZS1SltY7WRgUKhmxfts3OoLWzZJaoF0QvJFzX3X8G8l2BDyDzyRYHA_-GMRMyk9VJTocb9gcBKifXm4BauA7HxWb4rGqB8QLOV5z6K4O9mMMgsS4loJft_bBzhAkhy4wA_bL4NZ1pH3YOP28qOFIqwHgF0MwpHKR');">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Bridal bouquet with earth tone flowers"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIKvo7Dj-1zftR3bX9D4D-k9rv5ODppvGCeBY7oUssDE5dl1d1Z6_JBYVekS2_Tv-dGlutpE2q9CqAbam4ODPPA7nGUWtfRvOIBHw5Oydf4NCdNQU9Ta2Iwyi_Gl9fv6SkDbK94cYJJ7o56NuGg4NuLd81R_In_7CLvXEmTZAlxHROk639o6Pl3AxffSvrcGzYTtMsICGT2-LwT6oN5uIjK2xBndkM260LRPXlXumHOEdDURaZ-fpZiQQIV2Nm3zwmmVYkcw5-x3bB');">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Couple laughing together closely"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBq_jlVosbeQFYGn38PJliBK9EKlxmlJYtiaUIqcMVtA6FX11iVCRqM44X5mxCEQX3u5eLVckmoZ1n_KrBKYjzPo8-8hXyNFJZMLpXY1bD9QTDaa3moy-J2D0hMZDuxTdMYlUw4oyKPBICERM8AnF4LU8-mRbkMX2-cu3DgNWxaOvxGvvV4RFgUU3246-QVL3ypGwmdhZyFeMD-uflXkrUBU1ZWUbGNfS5t8sXemyau9CFDQRBCFKeIm8PR49O3q5FqTKv4PMeE9EZq');">
+                    </div>
+                    <div class="masonry-item-tall rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Couple walking hand in hand at sunset"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJMeRrUcLFOROFt4-VINLMNDjkq1lDOrQMELWCRMVINpoOpK2eEKMPYJkXLJw7-WmfI8IfdxlhpW0PsLE9MU3YlxKkYi6jxNhu7e_UWUuJWwi-0CZQWzFbwqmsU6ypF9i60mw4oDqtWHOxlPn8J_zH2PQoGKEzq94OIRIlngBhM4ew9_9Px64a3HMXuc3z77wffyJjpPoOGchQ51UI7X06Cd5z_pYUXLRZwKyCZsMPdo4Q60PGfwWQWU2qHQkzrYTn4QqzvWf4C1oE');">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Wedding rings on a rustic wood surface"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYL0N8eQ5niMyr6eEDNvfkBP49ZaufM0JaNPVONMMWJMku7hyMVdymG0YH-rmXjU_Sx8vz_mQK3CUxQXvK-Ydq0G5NwMxOzIT8Xj7cupzddDoD-IuaZrYLDEjvGS0V3-uaoJ3zMwgktifrwppnXcP1wiB5Y_hOvY0o9G2Ts2SQ28coD9YaHhHFqP9Ufe8EzYnQyzEczRr6M_xO2hq6lI3K8GRihNmFU5Hahjss3GRYU8O3dcwJfehAH93EB-N-biYWlDBr6zbIR6fM');">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-center bg-cover"
+                        data-alt="Close up of bride's veil and hair"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkzkYLTgXZwXYZ8bpE93yC4-BIHaR3h8KoURwnyw2gk_Kex8vo9vElZGVrIFyhcFE2dOhW15uV-CPjbp6a3e31rD_tXehxhvtVyBJ_NLJ3rV18kjAz4eVPlgTQblmzXyvq0FIRgXamuWBwvOUnjIuZaM_HXLFxfKXBXaMWLdkzS2UlZsOv9pbhUJZNoHvnZt4S5_2DeYF8V3oCigHX1fRcUDqPdl9YnEDLj30RWzEytMO96t2oux8fLt2Y9N4K1TdknosnhVORHy2b');">
+                    </div>
+                </div>
+            </section>
+            <!-- RSVP Form -->
+            <section class="max-w-[960px] w-full px-6 py-16" id="rsvp">
+                <div class="bg-primary/5 dark:bg-white/5 rounded-[2.5rem] p-8 md:p-12 border border-primary/10">
+                    <div class="max-w-xl mx-auto flex flex-col items-center">
+                        <h3 class="font-serif text-3xl font-bold text-center mb-2">Wishes & Prayers</h3>
+                        <p class="text-[#9a634c] dark:text-gray-400 text-center mb-8">Leave your warm wishes for the
+                            happy couple</p>
+                        <form class="w-full space-y-4">
+                            <div>
+                                <label class="text-xs font-bold uppercase tracking-wider mb-2 block">Your Name</label>
+                                <input
+                                    class="w-full rounded-xl bg-white dark:bg-white/10 border-primary/10 focus:ring-primary focus:border-primary px-4 py-3"
+                                    placeholder="Full Name..." type="text" />
+                            </div>
+                            <div>
+                                <div>
+                                    <label class="text-xs font-bold uppercase tracking-wider mb-2 block">Your
+                                        Wishes</label>
+                                    <input
+                                        class="w-full rounded-xl bg-white dark:bg-white/10 border-primary/10 focus:ring-primary focus:border-primary px-4 py-3"
+                                        placeholder="Your Wishes..." type="text" />
+                                </div>
+                            </div>
+                            <button
+                                class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-primary/20 transition-all mt-4">
+                                Send Wishes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Guestbook / Wishes Display Wall -->
+                <div class="space-y-8 mt-5">
+                    <div class="text-center">
+                        <h3 class="text-3xl font-bold">Wishes Wall</h3>
+                        <p class="text-[#89616b] dark:text-[#c4a4ab]">Love and blessings from our friends and family</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Wish Card 1 -->
+                        <div
+                            class="bg-white dark:bg-[#2d1a1f] p-6 rounded-xl shadow-sm border border-[#f4f0f1] dark:border-[#3d2a2e] flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                    SJ</div>
+                                <div>
+                                    <p class="font-bold text-sm">Sarah &amp; John</p>
+                                </div>
+                            </div>
+                            <p class="text-[#89616b] dark:text-[#c4a4ab] italic font-display">"Congratulations! So happy
+                                for
+                                you both! Can't wait to see you guys walk down the aisle. Wishing you a lifetime of
+                                happiness! ❤️"</p>
+                        </div>
+                        <!-- Wish Card 2 -->
+                        <div
+                            class="bg-white dark:bg-[#2d1a1f] p-6 rounded-xl shadow-sm border border-[#f4f0f1] dark:border-[#3d2a2e] flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                    MT</div>
+                                <div>
+                                    <p class="font-bold text-sm">Marcus Thompson</p>
+                                </div>
+                            </div>
+                            <p class="text-[#89616b] dark:text-[#c4a4ab] italic font-display">"Best wishes on this
+                                wonderful
+                                journey as you build your new lives together."</p>
+                        </div>
+                        <!-- Wish Card 3 -->
+                        <div
+                            class="bg-white dark:bg-[#2d1a1f] p-6 rounded-xl shadow-sm border border-[#f4f0f1] dark:border-[#3d2a2e] flex flex-col gap-3">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                    EM</div>
+                                <div>
+                                    <p class="font-bold text-sm">Emily &amp; Mike</p>
+                                </div>
+                            </div>
+                            <p class="text-[#89616b] dark:text-[#c4a4ab] italic font-display">"Sending all our love and
+                                prayers to Alice and Bob. May your marriage be filled with laughter and endless joy!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Digital Gift Section -->
+            <section class="max-w-[960px] w-full px-6 py-16 text-center">
+                <h3 class="font-serif text-3xl font-bold mb-4">Wedding Gift</h3>
+                <p class="text-[#9a634c] dark:text-gray-400 max-w-md mx-auto mb-12">Your presence is a gift enough, but
+                    if you wish to give more, we appreciate your kindness.</p>
+                <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <!-- Bank 1 -->
+                    <div class="bg-[#f3ebe7] dark:bg-white/10 p-6 rounded-2xl flex flex-col items-center">
+                        <div class="h-6 mb-4 flex items-center font-bold text-sage">BANK MANDIRI</div>
+                        <p class="font-bold text-lg mb-1 tracking-widest">1234567890</p>
+                        <p class="text-xs uppercase text-[#9a634c] dark:text-gray-300 mb-4">a.n. GROOM NAME</p>
+                        <button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                            <span class="material-symbols-outlined text-base">content_copy</span> Copy Number
+                        </button>
+                    </div>
+                    <!-- Bank 2 -->
+                    <div class="bg-[#f3ebe7] dark:bg-white/10 p-6 rounded-2xl flex flex-col items-center">
+                        <div class="h-6 mb-4 flex items-center font-bold text-sage">Dana/Gopay</div>
+                        <p class="font-bold text-lg mb-1 tracking-widest">0987654321</p>
+                        <p class="text-xs uppercase text-[#9a634c] dark:text-gray-300 mb-4">a.n. BRIDE NAME</p>
+                        <button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                            <span class="material-symbols-outlined text-base">content_copy</span> Copy Number
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer class="w-full px-6 py-5 bg-primary/10 dark:bg-black/20 flex flex-col items-center text-center">
+                <h2 class="font-serif italic text-4xl text-primary mb-6">A &amp; J</h2>
+                <p class="text-[#9a634c] dark:text-gray-400 mb-8 font-medium">
+                    Thank you for being part of our journey.
+                </p>
+                <p class="text-[10px] uppercase tracking-widest text-[#9a634c]/50 mt-12">❤️Made by SNA Digital. Crafted
+                    with love</p>
+            </footer>
+        </main>
+        <!-- Background Decoration Patterns -->
+        <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 -right-24 w-64 h-64 bg-sage/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+    </section>
+
+    <script>
+        const btnOpen = document.getElementById("btn-open");
+        const music = document.getElementById("bg-music");
+
+        btnOpen.addEventListener("click", () => {
+            document.getElementById("scene-1").classList.remove("active");
+            document.getElementById("scene-2").classList.add("active");
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+            // play music setelah user klik
+            music.volume = 0.6;
+            music.play().catch(err => {
+                console.log("Autoplay blocked:", err);
+            });
+        });
+
+        // ===============================
+        // SET TANGGAL AKAD / ACARA
+        // ===============================
+        // Format: YYYY-MM-DDTHH:MM:SS
+        // WIB = +07:00
+
+        const targetDate = new Date("2026-06-30T08:00:00+07:00").getTime();
+        // ↑ ganti sesuai tanggal & jam acaramu
+
+        const daysEl = document.getElementById("cd-days");
+        const hoursEl = document.getElementById("cd-hours");
+        const minutesEl = document.getElementById("cd-minutes");
+        const secondsEl = document.getElementById("cd-seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                daysEl.textContent = "00";
+                hoursEl.textContent = "00";
+                minutesEl.textContent = "00";
+                secondsEl.textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysEl.textContent = String(days).padStart(2, "0");
+            hoursEl.textContent = String(hours).padStart(2, "0");
+            minutesEl.textContent = String(minutes).padStart(2, "0");
+            secondsEl.textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+
+</html>

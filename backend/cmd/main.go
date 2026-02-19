@@ -1,40 +1,43 @@
 package main
 
 import (
-	"time"
-	"wedding-invitation/config"
-	"wedding-invitation/database"
-	"wedding-invitation/internal/model"
-	"wedding-invitation/internal/routes"
+	"log"
 
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+
+	"wedding-invitation/config"
+	"wedding-invitation/internal/handler"
+	"wedding-invitation/internal/repository"
 )
 
 func main() {
-	config.LoadEnv()
-	db := config.ConnectDB()
+	_ = godotenv.Load()
 
-	// HANYA MIGRATE YANG DIPAKAI
-	db.AutoMigrate(
-		&model.InvitationTemplate{},
-	)
+	db := config.InitDB()
 
-	// Seed katalog undangan
-	database.SeedTemplates(db)
+	repo := repository.NewInvitationRepository(db)
+	h := handler.NewInvitationHandler(repo)
 
 	r := gin.Default()
 
-	// CORS untuk frontend
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173"},
-		AllowMethods:     []string{"GET", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type"},
-		AllowCredentials: true,
-		MaxAge:           12 * time.Hour,
-	}))
+	// CORS (BIAR FRONTEND BISA AKSES)
+	r.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
 
-	routes.SetupRoutes(r, db)
+	// ROUTES
+	r.GET("/templates", h.GetTemplates)
+	r.POST("/templates", h.CreateTemplate)
+	r.GET("/templates/:slug", h.GetTemplateBySlug)
 
+	log.Println("Backend running at http://localhost:8080")
 	r.Run(":8080")
 }

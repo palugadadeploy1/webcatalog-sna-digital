@@ -1,7 +1,27 @@
-import axios from "axios";
+import { API_URL } from "../config/api";
 
-const api = axios.create({
-  baseURL: "http://localhost:8080",
-});
+/**
+ * GET ALL TEMPLATES (UNTUK KATALOG)
+ */
+export async function getTemplates() {
+  const res = await fetch(`${API_URL}/templates`);
 
-export default api;
+  if (!res.ok) {
+    throw new Error("Gagal mengambil data template");
+  }
+
+  return res.json();
+}
+
+/**
+ * GET TEMPLATE BY SLUG (UNTUK PREVIEW)
+ */
+export async function getTemplateBySlug(slug) {
+  const res = await fetch(`${API_URL}/templates/${slug}`);
+
+  if (!res.ok) {
+    throw new Error("Template tidak ditemukan");
+  }
+
+  return res.json();
+}

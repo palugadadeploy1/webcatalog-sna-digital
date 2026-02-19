@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Digital Scrapbook Invitation</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Special+Elite&family=Permanent+Marker&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f26c0d",
+            primary2: "#f2b90d",
+            "background-light": "#f8f7f5",
+            "background-dark": "#221710",
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            typewriter: ["Special Elite", "serif"],
+            marker: ["Permanent Marker", "cursive"],
+
+            display2: ["Plus Jakarta Sans", "sans-serif"],
+            handwritten: ["Caveat", "cursive"]
+          }
+        }
+      }
+    }
+
+  </script>
+  <style type="text/tailwindcss">
+    .torn-edge {
+            clip-path: polygon(0% 0%, 5% 2%, 10% 0%, 15% 3%, 20% 0%, 25% 2%, 30% 0%, 35% 3%, 40% 0%, 45% 2%, 50% 0%, 55% 3%, 60% 0%, 65% 2%, 70% 0%, 75% 3%, 80% 0%, 85% 2%, 90% 0%, 95% 3%, 100% 0%, 100% 100%, 95% 98%, 90% 100%, 85% 97%, 80% 100%, 75% 98%, 70% 100%, 65% 97%, 60% 100%, 55% 98%, 50% 100%, 45% 97%, 40% 100%, 35% 98%, 30% 100%, 25% 97%, 20% 100%, 15% 98%, 10% 100%, 5% 97%, 0% 100%);
+        }
+  </style>
+
+  <style>
+    .scene {
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    .scene-hide {
+      opacity: 0;
+      transform: translateY(40px);
+      pointer-events: none;
+    }
+
+
+    .paper-texture {
+      background-color: #fcfaf8;
+      background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBs_RpUJCMhfDF7F2FxyY72ovat6Ig_oa7c4pNQFT1D0x8xuVEhAfK-X96eWibq9Qk69rFlOIXb_acHxvrDJoZ6G6T51p8_gfZgufwKXY5MYG-w2C3DTu8VQAmKgpZgtQZ_qSZDSbKNKzck0N3ItVlP6aBXs-XHa_7SHaqeBo1sul10kdYn2PddSG3E6ZEGlS6Hdk-bpwlcZYVTUTt5o_fbs6gqosSPewI3FSsPv7jGSGS2PcBFIDfdwUYMBpJjPQgg_CJfd9oKXU4)
+    }
+
+    .dark .paper-texture {
+      background-color: #221710;
+      background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAV_vGh1J8_8z8xcu32SB8e3tzzPKnjr_7hsr1U0xcA6CQ8Z7jVrjt-2X5fC2VKV3tM_4CKn_VhYlieNlxrqCCrckqGarndkotVHIAbjA0Tn99fiu16kl7ZJG48T1WFnepkAjnWuk-AHN_gFo8Aj04yzW8GnyFKrEsZJg1TnMgVC0GRT8WVSk62PSQBCkxIe0GG3w-DFH1QR4Qtqgi_MBfiXYOcUOatmp0j7U11Zx_yn4wtaIeE1NTbF8yb1ZoF2lE6KtDVP8ZCt1w)
+    }
+
+    /* scene 1 */
+    .washi-tape-s1 {
+      opacity: .7;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+    }
+
+    /* scene 2 */
+    .washi-tape-s2 {
+      background-color: rgba(242, 185, 13, 0.6);
+      backdrop-filter: blur(1px);
+      transform: rotate(-3deg);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .polaroid-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)
+    }
+
+    .label-maker {
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+      letter-spacing: 0.1em;
+      box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(0, 0, 0, 0.2)
+    }
+  </style>
+
+</head>
+
+<body class="bg-background-light overflow-x-hidden">
+
+  <!-- ================= MUSIC ================= -->
+  <audio id="bgm" src="musik.mp3" loop></audio>
+
+  <!-- ================= SCENE 1 ================= -->
+  <div id="scene1" class="scene">
+    <!-- Main Scrapbook Canvas -->
+    <div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4 md:p-10">
+      <!-- Background Wrapper (Simulating the Scrapbook Base) -->
+      <div
+        class="relative w-full max-w-4xl min-h-[85vh] paper-texture rounded-lg shadow-2xl overflow-hidden flex flex-col border border-[#e5e7eb] dark:border-[#3d2b1f]">
+        <!-- Top Navigation Bar (Integrated into Scrapbook Style) -->
+        <header
+          class="flex items-center justify-between px-6 py-4 border-b border-dashed border-[#d1d5db] dark:border-[#4b3527] z-50">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">auto_stories</span>
+            <h2 class="text-[#1c130d] dark:text-[#fcfaf8] text-sm font-bold uppercase tracking-widest font-typewriter">
+              Vol. 01: Our Story</h2>
+          </div>
+        </header>
+        <!-- Scrapbook Content Area -->
+        <main class="relative flex-1 p-6 md:p-12 overflow-hidden flex flex-col items-center justify-center">
+          <!-- Floating Decorative Stickers & Notes -->
+          <div
+            class="absolute top-10 right-10 -rotate-12 bg-yellow-100 dark:bg-yellow-900/30 p-4 shadow-md w-32 border-l-4 border-yellow-400">
+            <p class="font-typewriter text-[10px] text-yellow-800 dark:text-yellow-200">Don't forget to wear something
+              comfy!</p>
+          </div>
+          <!-- Main Polaroid Section -->
+          <div class="relative z-10 flex flex-col items-center">
+            <!-- Main Couple Photo (Polaroid Style) -->
+            <div
+              class="relative bg-white dark:bg-[#e5e5e5] p-3 pb-12 polaroid-shadow -rotate-2 transform hover:rotate-0 transition-all duration-300 cursor-pointer max-w-[320px] md:max-w-[400px]">
+              <!-- Washi Tape Elements -->
+              <div
+                class="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-8 bg-primary/40 washi-tape-s1 rotate-2 backdrop-blur-sm border border-white/20">
+              </div>
+              <div class="aspect-square w-full bg-gray-200 overflow-hidden">
+                <img alt="Candid photo of the couple laughing together"
+                  class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500"
+                  data-alt="Candid photo of the couple laughing together"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoC2atzuqIg5SC9mpl_XdsRTriPAGufUwCoJ8wxqv83KjodEndEKz4sxUzprMPvCJeY-pAFdHTM5UMcpp5m6JCWZ1dcUOoUU-jctckdVzRjbtgsG9v-u_z8D1iQjo0iD8600JWUccBfGMzP1PPKZocWKINFIewuamAAo8RQbt8KfXayZW10Zu2WLjE2VpLeMlRX9U29LUy05LyIsiAwvrF18ChYWd-8RJvl7taR67-2XjNnTgGGfH7x5d9-EP0deYF3A83Yp7kr8c" />
+              </div>
+              <div class="absolute bottom-3 left-0 w-full text-center">
+                <p class="font-marker text-2xl text-[#1c130d] dark:text-gray-800">Adit &amp; Sarah</p>
+              </div>
+            </div>
+            <!-- Overlapping Smaller Polaroid -->
+            <div
+              class="absolute -bottom-10 -right-16 rotate-12 bg-white dark:bg-[#e5e5e5] p-2 pb-8 polaroid-shadow hidden md:block w-48 z-20">
+              <div class="absolute -top-3 -right-2 w-16 h-6 bg-blue-400/30 washi-tape-s1 -rotate-12 backdrop-blur-sm">
+              </div>
+              <div class="aspect-square w-full bg-gray-300 overflow-hidden">
+                <img alt="Close up of hands holding each other" class="w-full h-full object-cover"
+                  data-alt="Close up of hands holding each other"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk2QbFiwrz0UnS57hwrAg7lSK0t8srrK9_sGLPC8ArY5ZHkFIJko09zwUTN0NkMjcH5ph4kpMPU6yR83FwAAhSrDHjylwWe0U7jwh7bH1AxYZlFlAulDvXQx9FsfxcRH176TP3LMPsxH7kFUTWNtdLjHL8TrOA4TGFapYYzWt_P7cxz_2ypIAG2ReL6QR2E6Y1dt2YP_0EFdoV-nNK92lepXJklk5h6JJsH7XvLM1Wl1A_XnTl5JKRE16zSk7CirZUX6H51cC2FYU" />
+              </div>
+              <p class="font-typewriter text-[10px] text-center pt-2 text-gray-700">The First Day</p>
+            </div>
+            <!-- Another Overlapping Element -->
+            <div
+              class="absolute top-20 -left-20 -rotate-12 bg-white dark:bg-[#e5e5e5] p-2 pb-8 polaroid-shadow hidden lg:block w-40 z-0 opacity-80">
+              <div class="aspect-square w-full bg-gray-300 overflow-hidden">
+                <img alt="Engagement ring box in garden" class="w-full h-full object-cover"
+                  data-alt="Engagement ring box in garden"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9wUjm0NXRTPbJhyv43UvqUs3qX_Cv-hKOIzFjbcpMj7HlxARIInLNGyklA4De5Gxa2bPWpx5yUUZ8moJH7SBGE7xVo5Hm1eOW4bT9hBzZMv_KLCoum89j9SgNnpQi0gUlNsNjiHNXlj71AtR9aglbH0U74CnJl3sxXWf1GdI5LZe-8NY1q-WkvCrkO__tyHY9tGT4XAabg0lGKW5ZbAsdpnTUmsXyH0jtBfiaQukRnyEkZrp0wBOIxmHtnV2PwxozaroP4bGlxAg" />
+              </div>
+              <p class="font-typewriter text-[10px] text-center pt-2 text-gray-700">Yes! 20.01.24</p>
+            </div>
+          </div>
+          <!-- Textual Content -->
+          <div class="mt-16 text-center z-30">
+            <h3 class="font-typewriter text-lg text-[#1c130d] dark:text-[#fcfaf8] mb-1">Our Story Begins - Jakarta</h3>
+            <p class="font-marker text-primary text-xl">June 30, 2026</p>
+            <!-- Label Maker Style Button -->
+            <div class="mt-10 flex justify-center">
+              <button id="openInvitation"
+                class="label-maker flex items-center justify-center bg-primary text-white px-8 py-3 rounded-sm font-typewriter font-bold text-lg hover:scale-105 active:scale-95 transition-all group relative overflow-hidden">
+                <span class="relative z-10 flex items-center gap-2">
+                  BUKA UNDANGAN
+                  <span
+                    class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">mail</span>
+                </span>
+                <!-- Subtle label maker shine/texture -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-white/10"></div>
+              </button>
+            </div>
+          </div>
+          <!-- Small Accents -->
+          <div class="absolute bottom-8 right-8 flex gap-2">
+            <div
+              class="size-6 rounded-full bg-pink-200/50 flex items-center justify-center rotate-12 border border-pink-300">
+              <span class="material-symbols-outlined text-[14px] text-pink-600">auto_awesome</span>
+            </div>
+            <div
+              class="size-6 rounded-full bg-blue-200/50 flex items-center justify-center -rotate-12 border border-blue-300">
+              <span class="material-symbols-outlined text-[14px] text-blue-600">eco</span>
+            </div>
+          </div>
+        </main>
+        <!-- Footer-ish Area -->
+        <footer class="p-6 text-center border-t border-dashed border-[#d1d5db] dark:border-[#4b3527]">
+          <p
+            class="font-typewriter text-[10px] text-[#1c130d]/60 dark:text-[#fcfaf8]/60 italic uppercase tracking-widest">
+            Property of Adit &amp; Sarah • Created with Love</p>
+        </footer>
+      </div>
+      <!-- Outside Canvas Accents (Desktop only) -->
+      <div
+        class="hidden xl:block absolute top-1/4 -left-10 z-0 opacity-20 dark:opacity-10 scale-150 rotate-45 text-primary">
+        <span class="material-symbols-outlined text-[120px]">brush</span>
+      </div>
+      <div
+        class="hidden xl:block absolute bottom-1/4 -right-10 z-0 opacity-20 dark:opacity-10 scale-150 -rotate-12 text-primary">
+        <span class="material-symbols-outlined text-[120px]">draw</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= SCENE 2 ================= -->
+  <div id="scene2" class="scene font-display2 hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <div class="px-4 md:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+          <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#1c180d]/10 dark:border-white/10 px-4 md:px-10 py-3 bg-white/50 dark:bg-black/20 backdrop-blur-md rounded-xl">
+            <div class="flex items-center gap-4 text-primary2">
+              <div class="size-6">
+                <span class="material-symbols-outlined text-3xl">auto_stories</span>
+              </div>
+              <h2
+                class="text-[#1c180d] dark:text-white text-xl font-bold leading-tight tracking-tight font-handwritten">
+                The Deets</h2>
+            </div>
+            <div class="hidden md:flex flex-1 justify-end gap-8">
+              <div class="flex items-center gap-9">
+                <a class="text-[#1c180d] dark:text-white text-sm font-medium hover:text-primary2 transition-colors"
+                  href="#story">Our Story</a>
+                <a class="text-[#1c180d] dark:text-white text-sm font-medium hover:text-primary2 transition-colors"
+                  href="#gallery">Gallery</a>
+                <a class="text-[#1c180d] dark:text-white text-sm font-medium hover:text-primary2 transition-colors"
+                  href="#schedule">Schedule</a>
+                <a class="text-[#1c180d] dark:text-white text-sm font-medium hover:text-primary2 transition-colors"
+                  href="#guestbook">Guestbook</a>
+                <a class="bg-primary2 text-white px-4 py-2 rounded-full text-sm font-bold" href="#registry">Online
+                  Gift</a>
+              </div>
+            </div>
+          </header>
+          <div class="relative pt-12 pb-8 px-4">
+            <div
+              class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 washi-tape-s2 z-10 flex items-center justify-center">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#1c180d]/60">Forever &amp;
+                Always</span>
+            </div>
+            <div
+              class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[400px] border-4 border-white shadow-xl"
+              style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA4iNsOrOqc5I1B0cny3_PX2WLVug7PO0TroSuchFWAT1vJbcl92sO5tb8K9-Uk_cOb1Y5Dmn5zCAKS8iJQxL8Tw_hKaA0mLeERhgmBv6SwvM7PANCff9e4Z7kIEM5CDQwUAkzDODaQunNR3ABh_5M3cHuEtH7ZVMlgXVspBC-PfFOypfXlkt0iEi-Gb21lG_eMomqKQ-LxdpAfNeVJHyycxdNlXhjs6m7gIviKyhiG8KoIPgAazW8zceBLfmfl7gvY7GodLpoLlS8");'>
+              <div class="flex flex-col p-8">
+                <p class="text-white font-handwritten text-5xl mb-2">Alex &amp; Sam</p>
+                <p class="text-primary2 tracking-widest text-sm font-bold uppercase">Finally getting hitched •
+                  06.30.2026
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="py-10" id="gallery">
+            <h1
+              class="text-[#1c180d] dark:text-white tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-6 pt-6">
+              The Story: Our IG Feed</h1>
+            <div
+              class="grid grid-cols-3 gap-1 md:gap-4 p-4 bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-[#f4f0e7] dark:border-zinc-800">
+              <div class="flex flex-col gap-2">
+                <div class="bg-cover bg-center aspect-square rounded-sm md:rounded-lg"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLHmF0gdO16texVz8eYx1aJQjP_bVdiZaRhlltGzqyJiAJ20c2QV4RXP63x9r7C8hmLI1hW27dXllo1QLsudDLsw9sZIzk5vBrJNu_pT1CXrThSPnvL-UghB3Ri8LzQtD8jk0vdpaKvP7VFwW_6R9yWBmgcW0p851HEbACfgSftfGhmRc_cOQT6SSkancorXtzlWgEv8B4q9k3uVIyTLFKhW74MP69DLZ_yVj4ZeHhWy-Vja9J-tKHnpEGMpneOq4MdskJwWD5ARM");'>
+                </div>
+                <div class="flex gap-3 px-1 py-1">
+                  <span
+                    class="material-symbols-outlined text-red-500 text-sm md:text-xl font-variation-fill">favorite</span>
+                  <span
+                    class="material-symbols-outlined text-[#1c180d] dark:text-white text-sm md:text-xl">chat_bubble</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="bg-cover bg-center aspect-square rounded-sm md:rounded-lg"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-xMZMyvFu8pLH9SEb78l_J6VHr5Yk-JBCTQqwl_oTbdGxOl1sAllSZui0Ljyj-GHS20TpQ8hDx8btJ0AauPagNIQqD4LIooAtybKeHz7636wjCICN6VTZj-SQnuMO7Y8yY7Oj_N42etjGvrYjja2prdJN3HWdNTZ6HeiK1eY3FGt-PqlxnXNwrMKgoVR2vaYJduaUwyqQBa-Z6-lmUNZ-hoY2IZFaW7BW0WnTZ1aUcKImM5p4rEtvBW5A5b71kHwTuP3M9KgbS-s");'>
+                </div>
+                <div class="flex gap-3 px-1 py-1">
+                  <span
+                    class="material-symbols-outlined text-red-500 text-sm md:text-xl font-variation-fill">favorite</span>
+                  <span
+                    class="material-symbols-outlined text-[#1c180d] dark:text-white text-sm md:text-xl">chat_bubble</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="bg-cover bg-center aspect-square rounded-sm md:rounded-lg"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYfYGzOJuVHRlbkOI0YjMpYnYV0CZ2aoXIz7AaYioOzL-_XeprMquwH9rfCm4ExMHrz0T-Rm6DVrl-UbO24KRf0M35ENhq-7D7beP3wV8uHgGUToqzbDphiD_au43o1XhOwgWltASPXyweDHe5XvkxlWHVBhKbdfdDbSgCNJaK65B1FrqCq7zErq_j0AvBn3w2rOXtO6y8IngtLOqL4_wMOYd5XpXjUONP4dDOInbj4XU7-gyqlrL4xyWz8m2Qe8yYdUg0n7zcmzE");'>
+                </div>
+                <div class="flex gap-3 px-1 py-1">
+                  <span
+                    class="material-symbols-outlined text-red-500 text-sm md:text-xl font-variation-fill">favorite</span>
+                  <span
+                    class="material-symbols-outlined text-[#1c180d] dark:text-white text-sm md:text-xl">chat_bubble</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-12 relative flex flex-col items-center" id="schedule">
+            <div class="w-full max-w-[550px] bg-white dark:bg-zinc-100 torn-edge p-10 shadow-2xl rotate-1 relative">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class="material-symbols-outlined text-red-600 text-4xl transform -rotate-12">push_pin</span>
+              </div>
+              <h3
+                class="font-handwritten text-4xl text-center text-zinc-800 mb-8 border-b-2 border-dashed border-zinc-300 pb-4">
+                Where &amp; When</h3>
+              <div class="space-y-10 text-zinc-700">
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-primary2 text-3xl">favorite</span>
+                    <div>
+                      <p class="font-bold text-xl text-zinc-900">Akad Nikah</p>
+                      <p class="text-sm font-medium">08:00 AM - 10:00 AM</p>
+                      <p class="text-sm">The Greenhouse Loft, Jakarta</p>
+                      <p class="text-xs text-zinc-500 italic mt-1">Intimate ceremony with family.</p>
+                    </div>
+                  </div>
+                  <a class="inline-flex items-center justify-center gap-2 bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-zinc-700 transition-colors w-fit ml-11"
+                    href="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055"
+                    target="_blank" rel="noopener">
+                    <span class="material-symbols-outlined text-sm">map</span>
+                    Open Maps
+                  </a>
+                </div>
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-start gap-4 border-t border-dashed border-zinc-200 pt-8">
+                    <span class="material-symbols-outlined text-primary2 text-3xl">celebration</span>
+                    <div>
+                      <p class="font-bold text-xl text-zinc-900">Resepsi</p>
+                      <p class="text-sm font-medium">11:00 AM - 02:00 PM</p>
+                      <p class="text-sm">Grand Ballroom, The Greenhouse Loft</p>
+                      <p class="text-xs text-zinc-500 italic mt-1">Join us for the celebration!</p>
+                    </div>
+                  </div>
+                  <a class="inline-flex items-center justify-center gap-2 bg-zinc-800 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-zinc-700 transition-colors w-fit ml-11"
+                    href="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055"
+                    target="_blank" rel="noopener">
+                    <span class="material-symbols-outlined text-sm">map</span>
+                    Open Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute -bottom-4 right-10 rotate-12 bg-primary2 text-white p-2 text-xs font-bold rounded shadow-lg">
+              See you! ✨
+            </div>
+          </div>
+          <!-- countdown -->
+          <div class="py-16 relative overflow-visible">
+            <div
+              class="absolute top-0 left-4 md:left-20 -rotate-12 bg-pink-100 dark:bg-pink-900/30 p-3 rounded-lg border-2 border-pink-200 dark:border-pink-800 shadow-sm z-20">
+              <span class="material-symbols-outlined text-pink-600 text-3xl">calendar_today</span>
+              <p class="text-[8px] font-bold text-pink-700 uppercase mt-1">Mark It!</p>
+            </div>
+            <div class="absolute bottom-4 right-8 md:right-16 rotate-6 z-20">
+              <div
+                class="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-full border-2 border-blue-300 dark:border-blue-700 flex items-center justify-center shadow-md">
+                <span class="material-symbols-outlined text-blue-600 text-4xl">flight_takeoff</span>
+              </div>
+            </div>
+            <div class="absolute -top-10 right-20 w-20 h-20 opacity-20 pointer-events-none">
+              <span class="material-symbols-outlined text-8xl text-primary">approval</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <h3 class="font-handwritten text-3xl text-[#1c180d] dark:text-white mb-10 relative">
+                Counting down to the big day...
+                <span class="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
+              </h3>
+              <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                <div class="flex flex-col items-center group">
+                  <div class="w-1 h-12 bg-zinc-400 dark:bg-zinc-600 mb-[-10px] z-0 rounded-full"></div>
+                  <div
+                    class="luggage-tag w-24 h-32 flex flex-col items-center justify-center border-2 border-zinc-200 dark:border-zinc-700 relative z-10 -rotate-2 group-hover:rotate-0 transition-transform">
+                    <div
+                      class="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-300 dark:bg-zinc-500 rounded-full border-2 border-white dark:border-zinc-800 shadow-inner">
+                    </div>
+                    <p id="cd-days" class="font-handwritten text-5xl font-bold text-[#1c180d] mt-4">00</p>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-2">Days</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center group">
+                  <div class="w-1 h-12 bg-zinc-400 dark:bg-zinc-600 mb-[-10px] z-0 rounded-full"></div>
+                  <div
+                    class="luggage-tag w-24 h-32 flex flex-col items-center justify-center border-2 border-zinc-200 dark:border-zinc-700 relative z-10 rotate-3 group-hover:rotate-0 transition-transform">
+                    <div
+                      class="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-300 dark:bg-zinc-500 rounded-full border-2 border-white dark:border-zinc-800 shadow-inner">
+                    </div>
+                    <p id="cd-hours" class="font-handwritten text-5xl font-bold text-[#1c180d] mt-4">00</p>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-2">Hours</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center group">
+                  <div class="w-1 h-12 bg-zinc-400 dark:bg-zinc-600 mb-[-10px] z-0 rounded-full"></div>
+                  <div
+                    class="luggage-tag w-24 h-32 flex flex-col items-center justify-center border-2 border-zinc-200 dark:border-zinc-700 relative z-10 -rotate-1 group-hover:rotate-0 transition-transform">
+                    <div
+                      class="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-300 dark:bg-zinc-500 rounded-full border-2 border-white dark:border-zinc-800 shadow-inner">
+                    </div>
+                    <p id="cd-minutes" class="font-handwritten text-5xl font-bold text-[#1c180d] mt-4">00</p>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-2">Mins</span>
+                  </div>
+                </div>
+                <div class="flex flex-col items-center group">
+                  <div class="w-1 h-12 bg-zinc-400 dark:bg-zinc-600 mb-[-10px] z-0 rounded-full"></div>
+                  <div
+                    class="luggage-tag w-24 h-32 flex flex-col items-center justify-center border-2 border-zinc-200 dark:border-zinc-700 relative z-10 rotate-1 group-hover:rotate-0 transition-transform">
+                    <div
+                      class="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-zinc-300 dark:bg-zinc-500 rounded-full border-2 border-white dark:border-zinc-800 shadow-inner">
+                    </div>
+                    <span id="cd-seconds" class="font-handwritten text-5xl font-bold text-[#ff4757] mt-4">00</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-2">Secs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-16" id="guestbook">
+            <h2 class="text-center font-handwritten text-4xl mb-10 text-[#1c180d] dark:text-white">Leave a Note!</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 px-4">
+              <div
+                class="bg-yellow-200 p-6 shadow-lg -rotate-2 hover:rotate-0 transition-transform cursor-pointer h-48 flex flex-col justify-between">
+                <p class="font-handwritten text-xl text-zinc-800 italic">"Can't wait to see you guys walk down the
+                  aisle! Love you both so much!"</p>
+                <p class="text-right font-bold text-xs uppercase tracking-tighter text-zinc-600">— Sarah &amp; Leo</p>
+              </div>
+              <div
+                class="bg-blue-200 p-6 shadow-lg rotate-3 hover:rotate-0 transition-transform cursor-pointer h-48 flex flex-col justify-between">
+                <p class="font-handwritten text-xl text-zinc-800 italic">"I'm only coming for the free cake... and
+                  obviously the love. Congrats!"</p>
+                <p class="text-right font-bold text-xs uppercase tracking-tighter text-zinc-600">— Uncle Jerry</p>
+              </div>
+              <div
+                class="bg-pink-200 p-6 shadow-lg -rotate-1 hover:rotate-0 transition-transform cursor-pointer h-48 flex flex-col justify-between">
+                <p class="font-handwritten text-xl text-zinc-800 italic">"Verified Soulmates. Can't wait for the
+                  bachelor party!"</p>
+                <p class="text-right font-bold text-xs uppercase tracking-tighter text-zinc-600">— Mike D.</p>
+              </div>
+            </div>
+            <!-- note for us -->
+            <div class="mt-12 mx-4 relative">
+              <div
+                class="relative z-10 bg-[#fff9c4] p-10 shadow-2xl rounded-sm -rotate-1 border-b-8 border-r-8 border-black/10 flex flex-col gap-6 max-w-xl mx-auto">
+                <div
+                  class="absolute -top-6 left-1/2 -translate-x-1/2 w-40 h-10 washi-tape-s2 z-20 opacity-80 flex items-center justify-center">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-[#1c180d]">Write to Us!</span>
+                </div>
+                <div class="mt-4">
+                  <label class="block font-handwritten text-2xl text-zinc-800 mb-1">Your Name</label>
+                  <input class="w-full marker-input placeholder:text-zinc-400" placeholder="Write your name here..."
+                    type="text" />
+                </div>
+                <div>
+                  <label class="block font-handwritten text-2xl text-zinc-800 mb-1">Your Message/Wishes</label>
+                  <textarea class="w-full marker-input placeholder:text-zinc-400 resize-none"
+                    placeholder="Write your sweet message here..." rows="4"></textarea>
+                </div>
+                <div class="flex justify-center mt-4">
+                  <button
+                    class="bg-[#ff4757] hover:bg-[#ff6b81] text-white font-handwritten text-3xl px-12 py-3 rounded-full shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all border-2 border-black">
+                    Post it! 📌
+                  </button>
+                </div>
+                <div class="absolute bottom-4 right-4 opacity-10">
+                  <span class="material-symbols-outlined text-6xl">draw</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-16 relative" id="registry">
+            <div
+              class="max-w-[800px] mx-auto bg-white dark:bg-zinc-900 rounded-3xl p-6 md:p-10 border-4 border-primary2/30 relative overflow-hidden shadow-2xl">
+              <div
+                class="absolute -right-4 -top-4 w-20 h-20 md:w-24 md:h-24 bg-[#ff6b6b] rounded-full flex items-center justify-center rotate-12 shadow-lg border-2 border-white">
+                <span class="material-symbols-outlined text-white text-3xl md:text-4xl">card_giftcard</span>
+              </div>
+              <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2">Online Gift</h2>
+                <p class="text-[#1c180d]/60 dark:text-white/60">Your presence is our greatest gift, but if
+                  you'd like to help us with our honeymoon fund:</p>
+              </div>
+              <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="relative p-6 border-[6px] border-[#1c180d] dark:border-white rounded-2xl bg-white dark:bg-zinc-800"
+                    style="border-style: double; clip-path: polygon(2% 2%, 98% 1%, 99% 99%, 1% 97%);">
+                    <div class="bg-zinc-100 p-2 rounded-lg">
+                      <div class="w-32 h-32 md:w-40 md:h-40 bg-zinc-300 flex items-center justify-center"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDx1cEuqlQzuJkhBPM67leOSGRNAWZsG4KlfrSoXREAEzR_J_wm4Q3JxM-pu3CBfH92xEBCf2BeXNTmgtksqOkiVjoU_EsYZZFKSpvZEO-ObBHsQYF5zqRatynnpGyIxgmZayFsfyCxyA4ZDYXNXA8hvHbi_60P61J1wy-C4X2Q24EAgX96WHejT6hdek6D7lrWfNy09PEp6rk43XaupN1JDYmBsNiyGbbDLawCswctmRA1Ziy9461-LLkkjD16mtU3YS68jnSeCM0"); background-size: cover;'>
+                      </div>
+                    </div>
+                    <p class="mt-4 font-handwritten text-xl font-bold text-center dark:text-zinc-800">
+                      Scan to Give</p>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <div
+                    class="bg-[#fcfbf8] dark:bg-zinc-800 p-5 rounded-xl border-2 border-dashed border-primary2/40 flex flex-col gap-2 relative">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold uppercase tracking-widest text-primary2">Bank
+                        Account</span>
+                      <div
+                        class="h-6 flex items-center px-2 bg-blue-100 dark:bg-blue-900/30 rounded text-blue-700 dark:text-blue-300 text-[10px] font-bold">
+                        BCA</div>
+                    </div>
+                    <div class="mt-1">
+                      <p class="text-sm opacity-60 dark:text-white/60">a.n. Alex &amp; Sam</p>
+                      <div class="flex items-center justify-between gap-2">
+                        <p id="norek1" class="text-xl font-bold tracking-wider font-display">1234567890</p>
+                        <button data-copy="norek1"
+                          class="p-1.5 hover:bg-primary2/10 rounded-lg transition-colors group flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm text-primary2">content_copy</span>
+                          <span
+                            class="copy-btn text-[10px] font-bold uppercase text-primary2 hidden group-hover:block">Copy</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-[#fcfbf8] dark:bg-zinc-800 p-5 rounded-xl border-2 border-dashed border-primary2/40 flex flex-col gap-2 relative">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold uppercase tracking-widest text-primary2">E-Wallet
+                        (Dana / GoPay)</span>
+                      <span class="material-symbols-outlined text-primary2 text-xl">account_balance_wallet</span>
+                    </div>
+                    <div class="mt-1">
+                      <p class="text-sm opacity-60 dark:text-white/60">Phone Number</p>
+                      <div class="flex items-center justify-between gap-2">
+                        <p id="norek2" class="text-xl font-bold tracking-wider font-display">0812-3456-7890</p>
+                        <button data-copy="norek2"
+                          class="p-1.5 hover:bg-primary2/10 rounded-lg transition-colors group flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm text-primary2">content_copy</span>
+                          <span
+                            class="copy-btn text-[10px] font-bold uppercase text-primary2 hidden group-hover:block">Copy</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-center text-[10px] font-bold uppercase tracking-tighter opacity-40 mt-4">
+                    Thank you for your kindness! ✨</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-16 flex flex-col items-center justify-center px-4">
+            <div class="relative w-full max-w-[600px]">
+              <div class="absolute -top-6 left-10 w-24 h-8 bg-blue-300/60 -rotate-12 z-10 backdrop-blur-sm"></div>
+              <div class="absolute -bottom-4 right-10 w-24 h-8 bg-pink-300/60 rotate-6 z-10 backdrop-blur-sm"></div>
+              <div class="bg-[#fffdf2] dark:bg-zinc-100 p-12 shadow-xl torn-edge -rotate-1 relative overflow-hidden">
+                <div class="absolute top-2 right-2 opacity-20">
+                  <span class="material-symbols-outlined text-6xl text-green-700">eco</span>
+                </div>
+                <div class="text-center space-y-4">
+                  <h4 class="text-zinc-400 font-bold uppercase tracking-[0.2em] text-[10px] mb-4">Word of Heart</h4>
+                  <p class="font-handwritten text-4xl text-zinc-800 leading-relaxed italic">
+                    "In all the world, there is no heart for me like yours. In all the world, there is no love for you
+                    like mine."
+                  </p>
+                  <p class="text-zinc-500 font-bold text-sm pt-4">— Maya Angelou</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="py-20 text-center">
+            <div class="flex flex-col items-center gap-4">
+              <span class="material-symbols-outlined text-6xl text-primary2 font-variation-fill">favorite</span>
+              <h2 class="font-handwritten text-5xl">See you there!</h2>
+              <div class="flex gap-4 mt-6 opacity-40">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <span class="material-symbols-outlined">eco</span>
+                <span class="material-symbols-outlined">celebration</span>
+              </div>
+              <p class="text-xs font-bold uppercase tracking-[0.3em] mt-10 opacity-30">❤️Made by SNA Digital • Designed
+                with Love</p>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    const scene1 = document.getElementById('scene1');
+    const scene2 = document.getElementById('scene2');
+    const bgm = document.getElementById('bgm');
+
+    scene2.classList.add('scene-hide');
+
+    const openBtn = document.querySelector('#scene1 .label-maker');
+
+    openBtn.addEventListener('click', () => {
+
+      bgm.play().catch(() => { });
+
+      scene1.classList.add('scene-hide');
+      scene1.classList.add('hidden');
+      scene2.classList.remove('scene-hide');
+      scene2.classList.remove('hidden');
+
+      setTimeout(() => {
+        scene2.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+
+    });
+
+    // ===============================
+        // SET TANGGAL AKAD / ACARA
+        // ===============================
+        // Format: YYYY-MM-DDTHH:MM:SS
+        // WIB = +07:00
+
+        const targetDate = new Date("2026-06-30T08:00:00+07:00").getTime();
+        // ↑ ganti sesuai tanggal & jam acaramu
+
+        const daysEl = document.getElementById("cd-days");
+        const hoursEl = document.getElementById("cd-hours");
+        const minutesEl = document.getElementById("cd-minutes");
+        const secondsEl = document.getElementById("cd-seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                daysEl.textContent = "00";
+                hoursEl.textContent = "00";
+                minutesEl.textContent = "00";
+                secondsEl.textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysEl.textContent = String(days).padStart(2, "0");
+            hoursEl.textContent = String(hours).padStart(2, "0");
+            minutesEl.textContent = String(minutes).padStart(2, "0");
+            secondsEl.textContent = String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+    // copy norek
+    document.querySelectorAll("button[data-copy]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const targetId = button.dataset.copy;
+        const el = document.getElementById(targetId);
+
+        if (!el) return;
+
+        const text = el.innerText.trim();
+
+        navigator.clipboard.writeText(text).then(() => {
+
+          const icon = button.querySelector(".material-symbols-outlined");
+
+          if (icon) {
+            const old = icon.textContent;
+            icon.textContent = "check";
+
+            setTimeout(() => {
+              icon.textContent = old;
+            }, 1200);
+          }
+
+        });
+
+      });
+
+    });
+
+  </script>
+</body>
+
+</html>

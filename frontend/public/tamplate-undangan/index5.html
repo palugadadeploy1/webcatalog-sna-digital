@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Wedding Invitation - Marcus &amp; kara</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Great+Vibes&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "gold-light": "#F9E29F",
+                        "gold-medium": "#D4AF37",
+                        "gold-dark": "#996515",
+                        "midnight": "#0A0A0B",
+                        "charcoal": "#121214",
+                        "primary": "#D4AF37",
+                        "gold-accent": "#C5A028",
+                        "background-dark": "#0F0F0F",
+                        "card-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif-display": ["Cinzel", "serif"],
+                        "serif": ["Playfair Display", "serif"],
+                        "script": ["Great Vibes", "cursive"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .scene {
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        .scene-hide{
+            opacity:0;
+            transform:translateY(20px);
+            pointer-events:none;
+        }
+        :root {
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B8860B 100%)
+        }
+        body {
+            font-family: "Manrope", sans-serif;
+            background-color: #0F0F0F
+        }
+        .gold-border {
+            border: 1px solid #D4AF37
+        }
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            width: 100%
+        }
+        .flip-inner {
+            background: #1A1A1A;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2)
+        }
+        .text-gold {
+            color: #D4AF37
+        }
+        .arch-frame {
+            border-top-left-radius: 500px;
+            border-top-right-radius: 500px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15)
+        }
+        .arch-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2)
+        }
+        .double-ring::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%
+        }
+        .double-ring::after {
+            content: "";
+            position: absolute;
+            inset: -16px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 50%
+        }
+        .floral-line-art {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC9nPdG0eBhV5CuXvMJLoFTc1Oz99YzS9Js1PHOzzKQBEo2Of83Q_JqfNq_CVW-2Sx8ga4nx30H-DN1hzRPQfYyVT8qTNM1eEXUXkpfdHg6r3JE4I2JMU9L_8Gpo7UPW6At6nFHs7Uc22Ogw0JNALZupVC8NH9SM1tS3zQlye9EnioYOOL-TuvNpGM1vwYDenebnu3JHvODguoN-P3cbez0uIMpBdM25TN0qP7GMkY8-VtDCtlsmiAQysiezDLVsBuIIsl_o2ZmoKLj);
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: contain
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-auto-rows: 200px;
+            gap: 20px
+        }
+        .masonry-item-tall {
+            grid-row: span 2
+        }
+        .floating-nav {
+            backdrop-filter: blur(12px);
+            background-color: rgba(15, 15, 15, 0.75);
+        }
+        @layer utilities {
+            .bg-luxury-texture {
+                background-color: #0A0A0B;
+                background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+            }
+            .text-gold-leaf {
+                background: linear-gradient(to bottom, #F9E29F 0%, #D4AF37 45%, #996515 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.3));
+            }
+            .gold-gradient-btn {
+                background: linear-gradient(45deg, #996515, #D4AF37, #F9E29F, #D4AF37, #996515);
+                background-size: 200% auto;
+            }
+            .gold-border {
+                border-image: linear-gradient(to right, #996515, #F9E29F, #996515) 1;
+            }
+        }
+        .corner-decoration {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .corner-tl { top: 20px; left: 20px; border-top: 2px solid #D4AF37; border-left: 2px solid #D4AF37; }
+        .corner-tr { top: 20px; right: 20px; border-top: 2px solid #D4AF37; border-right: 2px solid #D4AF37; }
+        .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #D4AF37; border-left: 2px solid #D4AF37; }
+        .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #D4AF37; border-right: 2px solid #D4AF37; }
+        .floral-svg {
+            position: absolute;
+            width: 150px;
+            fill: #D4AF37;
+        }
+    </style>
+</head>
+
+<body class="bg-midnight text-gray-300 transition-colors duration-300 overflow-x-hidden">
+    <!-- ================= MUSIC ================= -->
+    <audio id="bgm" src="musik.mp3" loop></audio>
+
+    <!-- ================= Floating Navbar ================= -->
+    <nav id="nav" class="nav fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-2xl hidden">
+        <div
+            class="floating-nav border border-primary/40 rounded-full px-4 py-3 md:px-8 shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex items-center justify-between gap-1 md:gap-4">
+            <a class="flex flex-col items-center gap-1 group" href="#home">
+                <span
+                    class="material-symbols-outlined text-primary text-xl transition-transform group-hover:scale-110">home</span>
+                <span
+                    class="text-[10px] uppercase tracking-widest text-primary/70 font-bold hidden sm:block">Home</span>
+            </a>
+            <div class="h-6 w-px bg-primary/20"></div>
+            <a class="flex flex-col items-center gap-1 group" href="#couple">
+                <span
+                    class="material-symbols-outlined text-primary text-xl transition-transform group-hover:scale-110">favorite</span>
+                <span
+                    class="text-[10px] uppercase tracking-widest text-primary/70 font-bold hidden sm:block">Couple</span>
+            </a>
+            <div class="h-6 w-px bg-primary/20"></div>
+            <a class="flex flex-col items-center gap-1 group" href="#events">
+                <span
+                    class="material-symbols-outlined text-primary text-xl transition-transform group-hover:scale-110">event</span>
+                <span
+                    class="text-[10px] uppercase tracking-widest text-primary/70 font-bold hidden sm:block">Events</span>
+            </a>
+            <div class="h-6 w-px bg-primary/20"></div>
+            <a class="flex flex-col items-center gap-1 group" href="#gallery">
+                <span
+                    class="material-symbols-outlined text-primary text-xl transition-transform group-hover:scale-110">photo_library</span>
+                <span
+                    class="text-[10px] uppercase tracking-widest text-primary/70 font-bold hidden sm:block">Gallery</span>
+            </a>
+            <div class="h-6 w-px bg-primary/20"></div>
+            <a class="flex items-center gap-2 bg-primary px-4 py-2 rounded-full text-background-dark transition-all hover:bg-white hover:scale-105 active:scale-95 group"
+                href="#rsvp">
+                <span class="material-symbols-outlined text-xl">send</span>
+                <span class="text-xs font-black uppercase tracking-widest">Wish</span>
+            </a>
+        </div>
+    </nav>
+    <section id="scene-1" class="scene">
+        <div class="relative flex min-h-screen w-full flex-col bg-luxury-texture">
+            <div class="hidden md:block">
+                <div class="absolute top-0 left-0 p-8 z-10">
+                    <svg class="opacity-40" height="200" viewBox="0 0 100 100" width="200">
+                        <path d="M0 0 L40 0 C30 10 10 30 0 40 Z" fill="#D4AF37"></path>
+                        <path d="M5 5 Q 25 5, 25 25 M5 15 Q 15 15, 15 25" fill="none" stroke="#D4AF37"
+                            stroke-width="0.5">
+                        </path>
+                        <circle cx="2" cy="2" fill="#D4AF37" r="1"></circle>
+                    </svg>
+                </div>
+                <div class="absolute top-0 right-0 p-8 z-10 rotate-90">
+                    <svg class="opacity-40" height="200" viewBox="0 0 100 100" width="200">
+                        <path d="M0 0 L40 0 C30 10 10 30 0 40 Z" fill="#D4AF37"></path>
+                        <path d="M5 5 Q 25 5, 25 25 M5 15 Q 15 15, 15 25" fill="none" stroke="#D4AF37"
+                            stroke-width="0.5">
+                        </path>
+                    </svg>
+                </div>
+                <div class="absolute bottom-0 left-0 p-8 z-10 -rotate-90">
+                    <svg class="opacity-40" height="200" viewBox="0 0 100 100" width="200">
+                        <path d="M0 0 L40 0 C30 10 10 30 0 40 Z" fill="#D4AF37"></path>
+                        <path d="M5 5 Q 25 5, 25 25 M5 15 Q 15 15, 15 25" fill="none" stroke="#D4AF37"
+                            stroke-width="0.5">
+                        </path>
+                    </svg>
+                </div>
+                <div class="absolute bottom-0 right-0 p-8 z-10 rotate-180">
+                    <svg class="opacity-40" height="200" viewBox="0 0 100 100" width="200">
+                        <path d="M0 0 L40 0 C30 10 10 30 0 40 Z" fill="#D4AF37"></path>
+                        <path d="M5 5 Q 25 5, 25 25 M5 15 Q 15 15, 15 25" fill="none" stroke="#D4AF37"
+                            stroke-width="0.5">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <header class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-8 md:px-20">
+                <div class="flex items-center gap-3">
+                    <div class="text-gold-medium">
+                        <span class="material-symbols-outlined text-3xl">filter_vintage</span>
+                    </div>
+                    <h2 class="text-xl font-serif-display font-bold tracking-[0.2em] text-gold-light">M &amp; K</h2>
+                </div>
+            </header>
+            <main class="flex flex-1 flex-col items-center justify-center relative min-h-screen">
+                <div
+                    class="absolute inset-0 z-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/marble-similar.png')]">
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center px-4 max-w-[960px] w-full">
+                    <div class="mb-6">
+                        <span
+                            class="text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] text-gold-medium/80 border-b border-gold-dark/30 pb-2">
+                            The Wedding Celebration Of
+                        </span>
+                    </div>
+                    <h1
+                        class="font-serif-display text-5xl md:text-9xl font-bold leading-tight tracking-normal mb-6 text-gold-leaf py-2">
+                        Marcus &amp; Kara
+                    </h1>
+                    <div class="flex items-center justify-center gap-6 mb-12">
+                        <div
+                            class="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent via-gold-medium to-transparent">
+                        </div>
+                        <p
+                            class="text-xs md:text-base font-serif-display tracking-[0.3em] uppercase text-gold-light/90">
+                            30 June 2026
+                        </p>
+                        <div
+                            class="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent via-gold-medium to-transparent">
+                        </div>
+                    </div>
+                    <!-- Countdown Timer -->
+                    <div class="flex gap-4 md:gap-10 mb-16">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-sm bg-white/5 backdrop-blur-md border border-gold-dark/30">
+                                <p
+                                    class="cd-days text-gold-light text-xl md:text-4xl font-light font-serif-display">00</p>
+                            </div>
+                            <p
+                                class="mt-3 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gold-medium/60">
+                                Days</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-sm bg-white/5 backdrop-blur-md border border-gold-dark/30">
+                                <p
+                                    class="cd-hours text-gold-light text-xl md:text-4xl font-light font-serif-display">00</p>
+                            </div>
+                            <p
+                                class="mt-3 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gold-medium/60">
+                                Hours</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-sm bg-white/5 backdrop-blur-md border border-gold-dark/30">
+                                <p 
+                                    class="cd-minutes text-gold-light text-xl md:text-4xl font-light font-serif-display">00</p>
+                            </div>
+                            <p
+                                class="mt-3 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gold-medium/60">
+                                Mins</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="flex h-16 w-16 md:h-24 md:w-24 items-center justify-center rounded-sm bg-white/5 backdrop-blur-md border border-gold-dark/30">
+                                <p
+                                    class="cd-seconds text-gold-light text-xl md:text-4xl font-light font-serif-display">00</p>
+                            </div>
+                            <p
+                                class="mt-3 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-gold-medium/60">
+                                Secs</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center gap-8">
+                        <button id="OpenInvitation"
+                            class="OpenInvitation gold-gradient-btn group flex min-w-[240px] cursor-pointer items-center justify-center gap-4 overflow-hidden rounded-full h-16 px-10 text-black text-sm font-extrabold uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-all hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] hover:scale-105 active:scale-95">
+                            <span class="material-symbols-outlined text-xl">mail</span>
+                            <span>Buka Undangan</span>
+                        </button>
+                        <p
+                            class="text-[11px] font-medium text-gold-light/40 italic max-w-xs leading-relaxed tracking-wider">
+                            "Two souls, one heart, a journey that begins today."
+                        </p>
+                    </div>
+                </div>
+                <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-40">
+                    <span class="text-[9px] uppercase tracking-[0.5em] font-bold text-gold-medium">Explore</span>
+                    <div class="w-[1px] h-12 bg-gradient-to-b from-gold-medium to-transparent animate-pulse"></div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <section id="scene-2" class="scene hidden">
+        <main class="max-w-[1200px] mx-auto px-4 md:px-10 pb-32" id="home">
+            <section class="py-12 md:py-24 @container">
+                <div class="flex flex-col gap-12 @[864px]:flex-row items-center">
+                    <div class="w-full max-w-[450px] aspect-[4/6] relative">
+                        <div class="absolute inset-0 arch-frame border border-primary/40 arch-glow z-10"></div>
+                        <div class="absolute inset-2 arch-frame overflow-hidden z-0">
+                            <div class="w-full h-full bg-center bg-cover transform scale-105"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAF5rjmKT-SB66orwgT3Cqk5uvCwSPZxjBZd1wAdld2Pta8uDp5djbZLRn_69Muvse6SmWICi02GIL_VJkijrb53iuglbzho96uOndHISPy8d41KoSFMBNdK7bYDM5l944W8Uv_djDBdweX-8njTDoZRIpByqZULguBwkceryVA3RaZc4i9y9F10ZiQqelnoCwe3uJHmwpWpMj67S0p125mnp6TDtC8yjuCucy5PYzMryycAAjNmsN3rBR8JNU2UIPFG3D71iuBc0Gv");'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-8 w-full @[864px]:pl-16 text-center @[864px]:text-left">
+                        <div class="space-y-6">
+                            <span class="text-primary font-bold tracking-[0.4em] uppercase text-xs md:text-sm">The
+                                Wedding
+                                Celebration</span>
+                            <h1 class="text-6xl md:text-9xl font-serif leading-tight text-white drop-shadow-lg">
+                                Marcus <br /> <span class="text-primary">&amp;</span> Kara
+                            </h1>
+                            <div class="flex flex-col gap-4 items-center @[864px]:items-start">
+                                <div class="flex items-center gap-4 text-xl font-light text-white/80">
+                                    <span class="material-symbols-outlined text-primary">calendar_month</span>
+                                    <span>June 30, 2026</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-xl font-light text-white/80">
+                                    <span class="material-symbols-outlined text-primary">location_on</span>
+                                    <span>San Francisco, California</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <button
+                                class="bg-primary text-background-dark px-12 py-5 rounded-full font-bold text-lg shadow-xl shadow-primary/20 hover:bg-white transition-all transform hover:-translate-y-1">
+                                SAVE THE DATE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-32">
+                <div class="max-w-3xl mx-auto text-center space-y-10">
+                    <div class="gold-divider opacity-20 mb-10"></div>
+                    <span class="material-symbols-outlined text-6xl text-primary/40">format_quote</span>
+                    <h2 class="text-3xl md:text-5xl font-serif italic leading-relaxed px-4 text-white/90">
+                        "In all the world, there is no heart for me like yours. In all the world, there is no love for
+                        you
+                        like mine."
+                    </h2>
+                    <p class="text-primary font-bold tracking-[0.3em] uppercase text-sm">— Maya Angelou</p>
+                    <div class="gold-divider opacity-20 mt-10"></div>
+                </div>
+            </section>
+            <section class="py-24" id="couple">
+                <div class="text-center mb-24">
+                    <h2 class="text-4xl md:text-6xl font-serif mb-6 text-white uppercase tracking-tight">The Happy
+                        Couple
+                    </h2>
+                    <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-24 lg:gap-32 px-10">
+                    <div class="flex flex-col items-center text-center space-y-12 group">
+                        <div class="relative">
+                            <div
+                                class="relative size-64 md:size-80 rounded-full border-2 border-primary/50 p-2 double-ring shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                                <div class="w-full h-full rounded-full overflow-hidden border border-primary/30">
+                                    <div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbFtHM4BOGR218n5PB1WevzyOB4vu2W1gHeFB__Vlo_IcxM1jFxjODXo5Rj4DuzTt_iLrsGyLJ3vhPB_u-ucXftyaGTJvvPkKeSTVHECvwd-vnt4UC3cKs_jGY_2-unKxaWwJtPBtR_FnzyY_1deAkpPs1oLJegrHTWjgsgTLRzTcFA0r39WwnjdHaniSIjrVI-_XgUn4QqDqc-EQMpQkiPRTrYxb3Sxr8CEJODSFXPPxzE5K7tI7qpG4o_LzfZRbZGXxC1DzIDiyL");'>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-12 floral-line-art">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-4">
+                            <h3 class="text-4xl font-serif text-white">Marcus Bennett</h3>
+                            <p class="text-primary font-bold text-xs tracking-[0.3em] uppercase">The Groom</p>
+                            <div class="py-4 border-y border-white/5">
+                                <p class="text-[10px] text-white/40 uppercase tracking-[0.3em] mb-2">Son of</p>
+                                <p class="font-medium text-lg text-white/90">Mr. &amp; Mrs. David Bennett</p>
+                            </div>
+                            <p class="text-base leading-relaxed text-white/60 max-w-sm mx-auto font-light">
+                                A software architect with a passion for vintage cameras and coastal hikes. Marcus knew
+                                Kara
+                                was the one from their very first coffee date in Mission District.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center space-y-12 group">
+                        <div class="relative">
+                            <div
+                                class="relative size-64 md:size-80 rounded-full border-2 border-primary/50 p-2 double-ring shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                                <div class="w-full h-full rounded-full overflow-hidden border border-primary/30">
+                                    <div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-110"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1EVF44EZCHh8ZGS9Cf4JiYi1cjhh7Ve3ShRXvUNp_U34pIVd0x6jAnfsjjcKjRwJf-U7LuxMgrKwCD78ntlxk8DSnX3V_FR1I8mKK4qmsb5dLi-x-vDvOJpRG497terLbF8PkMhn99wH_qqUlpnGEige1FWxY0ghKIGVkFlVkcVQT5dxf28G7ob1LV4EFM28j32XXOSkoXV19QQcxSXstcywZGcu3Cn3J2vYxJ6cKNEo8wqkNShRh0DVvhBAiXH-v41SVCFo6qTLV");'>
+                                    </div>
+                                </div>
+                                <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-12 floral-line-art">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-4">
+                            <h3 class="text-4xl font-serif text-white">Kara Thompson</h3>
+                            <p class="text-primary font-bold text-xs tracking-[0.3em] uppercase">The Bride</p>
+                            <div class="py-4 border-y border-white/5">
+                                <p class="text-[10px] text-white/40 uppercase tracking-[0.3em] mb-2">Daughter of</p>
+                                <p class="font-medium text-lg text-white/90">Mr. &amp; Mrs. Robert Thompson</p>
+                            </div>
+                            <p class="text-base leading-relaxed text-white/60 max-w-sm mx-auto font-light">
+                                A creative director and tea enthusiast who loves discovering hidden art galleries.
+                                Kara's
+                                infectious laugh and kind heart are what drew Marcus to her.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="py-24 bg-card-dark rounded-[3rem] my-32 px-6 border border-primary/10 relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl">
+                </div>
+                <div class="text-center mb-16 relative z-10">
+                    <h3 class="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4">Counting Down to Forever
+                    </h3>
+                    <div class="w-16 h-1 bg-primary/30 mx-auto"></div>
+                </div>
+                <!-- Countdown Timer -->
+                <div class="flex flex-wrap justify-center gap-6 md:gap-12 relative z-10">
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-28 h-32 md:w-40 md:h-48">
+                            <div
+                                class="flip-inner w-full h-full rounded-3xl flex items-center justify-center border border-primary/20">
+                                <p class="cd-days text-5xl md:text-8xl font-serif text-primary">00</p>
+                            </div>
+                        </div>
+                        <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/40">Days</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-28 h-32 md:w-40 md:h-48">
+                            <div
+                                class="flip-inner w-full h-full rounded-3xl flex items-center justify-center border border-primary/20">
+                                <p class="cd-hours text-5xl md:text-8xl font-serif text-primary">00</p>
+                            </div>
+                        </div>
+                        <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/40">Hours</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-28 h-32 md:w-40 md:h-48">
+                            <div
+                                class="flip-inner w-full h-full rounded-3xl flex items-center justify-center border border-primary/20">
+                                <p class="cd-minutes text-5xl md:text-8xl font-serif text-primary">00</p>
+                            </div>
+                        </div>
+                        <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/40">Mins</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="w-28 h-32 md:w-40 md:h-48">
+                            <div
+                                class="flip-inner w-full h-full rounded-3xl flex items-center justify-center border border-primary/20">
+                                <p class="cd-seconds text-5xl md:text-8xl font-serif text-primary">00</p>
+                            </div>
+                        </div>
+                        <span class="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/40">Secs</span>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24" id="events">
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div
+                        class="bg-card-dark p-12 rounded-[2rem] border border-primary/20 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-8xl text-primary">church</span>
+                        </div>
+                        <h4 class="text-primary tracking-[0.3em] uppercase text-xs font-bold mb-6">Holy Matrimony</h4>
+                        <h3 class="text-3xl font-serif text-white mb-8">The Wedding Ceremony</h3>
+                        <div class="space-y-6 text-white/70">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary mt-1">schedule</span>
+                                <div>
+                                    <p class="font-bold text-white">Tuesday, 30 June 2026</p>
+                                    <p class="text-sm">10:00 AM – 11:30 AM</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-white">Grace Cathedral</p>
+                                    <p class="text-sm">1100 California St, San Francisco, CA 94108</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="btn-map mt-10 w-full py-4 border border-primary/30 rounded-xl text-primary font-bold hover:bg-primary/10 transition-colors uppercase tracking-widest text-xs"
+                            data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">View
+                            Map</button>
+                    </div>
+                    <div
+                        class="bg-card-dark p-12 rounded-[2rem] border border-primary/20 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="material-symbols-outlined text-8xl text-primary">celebration</span>
+                        </div>
+                        <h4 class="text-primary tracking-[0.3em] uppercase text-xs font-bold mb-6">Dinner &amp; Party
+                        </h4>
+                        <h3 class="text-3xl font-serif text-white mb-8">The Wedding Reception</h3>
+                        <div class="space-y-6 text-white/70">
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary mt-1">schedule</span>
+                                <div>
+                                    <p class="font-bold text-white">Tuesday, 30 June 2026</p>
+                                    <p class="text-sm">06:00 PM – Late</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <span class="material-symbols-outlined text-primary mt-1">location_on</span>
+                                <div>
+                                    <p class="font-bold text-white">The Fairmont San Francisco</p>
+                                    <p class="text-sm">950 Mason St, San Francisco, CA 94108</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="btn-map mt-10 w-full py-4 border border-primary/30 rounded-xl text-primary font-bold hover:bg-primary/10 transition-colors uppercase tracking-widest text-xs"
+                            data-map="https://www.google.com/maps/search/?api=1&query=-6.248426399283455,106.8009122462055">View
+                            Map</button>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24" id="gallery">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">Our Moments</h2>
+                    <p class="text-primary font-bold tracking-[0.2em] uppercase text-xs">A glimpse into our journey</p>
+                </div>
+                <div class="masonry-grid">
+                    <div
+                        class="masonry-item-tall rounded-2xl border-2 border-primary/30 p-2 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full bg-center bg-cover rounded-xl"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsvCRe4B3CSh2q0DhmVeXesWScp2X740UTcumnwqUcbLCjDuw_bN9-DLnifps5qtH4COCsdNIVktsWcCG_W9IZGgd1lrGUnotLhj2A_d-a4z36cdg1nJcAEk9_6cL4-Ewcecm8F22VUn9D91sIOMamW1VSm1s8ad3CWgiZ6XASfWozIi_NCKX-Esnp42wOjQU6kYCc1eVRFDjRU12zTPppoZeDASGpaOuNagntIIPKg3OR5D47bt9YuPI-P4lJW3S9mk4HWpyaWWjX");'>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl border-2 border-primary/30 p-2 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full bg-center bg-cover rounded-xl"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_2LSbpWXUV_q9wmyn9pyDro9Oq750wRVFL6C_zPOnjgOa2Pq8ofeKNGY_HDwiBOS7Zh7EOatagb3DVHKUpSiPAt_6r90_r586Daw-j0SNZZtlwC6Kx2DWo-u4u0aYG92mV4E0aRzizhzgpgy8HDu9XzrN1yyt6eOYLs9y408Pw6HtGJ9stGS8YhyoZ3Z-xxI_iC5UdN8RC_4vh_3n3Z0XtFuCr2lw9_AWj-RFud7Wevj4VXoL16wML0yqFKjmC7kUgGxsogt5NK3i");'>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item-tall rounded-2xl border-2 border-primary/30 p-2 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full bg-center bg-cover rounded-xl"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbRZLQlnpYMyYy0RsEZ3NrLLFWVoC2960f1LtXym2zJCRfxibpgGCL6osvELqzi_b5Oyyicog1EGZRavFlLBOWecqcZPUNascy1M7VjYEwu33RDFe-beTR-azfPaVnRdMKZjHVEgBmr9SHZi1jbi1mYBvmePh9x8t8bcbPy5xO49wm0xB_9TUVfzU-GEfnwpDfq30zLJLY2GHKKEFLDb9CTjmYuAX5HbabqD8Yx07qFXMGYJMA7zvm2nagmgQcyn5qu05VBRmzYRgw");'>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl border-2 border-primary/30 p-2 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full bg-center bg-cover rounded-xl"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgS0v-Ie-9otNj80M0hV8bHOS0O3D-c-w-CiF9F7bDWPnXCJnYMqAG3M0iqhBrQqV9ZTWZQg9_pGIE70YsaCRfwMHzKQzl4e50V_opWa3rFLWO6v13EMTIObvaJ50HHu3Lcab3eHv63AQa945n_jxN5OXhlsfdjBDjr93qEt0gzgPkZrZrQsxlZ0gOaNnutlkoH8l2swiXYw99D3lVDSAx1kA8yg8ZbZydrqBDuOkpbxRxaNnLOT_vJQcyFY2g9SB0huiNt-jAfufD");'>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl border-2 border-primary/30 p-2 shadow-2xl overflow-hidden">
+                        <div class="w-full h-full bg-center bg-cover rounded-xl"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2_lNZbxplImBZyyyETAQt3-1wSNNTvQZqOlDpc_05csaeV-OfGj5wTjTfKV4kiViNtfaueFSxmLmfnX0uyVhj-r2Gton2zM5MraAcrdcAUdgP5QOYR22l_Ln8HqR-SvZc4DtDgdTyI2rr-g6jba8Pv7QIluuUNk9JnIPfCtChuUtuzc0rnCFltttlOnLjmEKPicTMB200Ssm-dIUlO-dULoXghJYwH_T-fgEpCiug2R03xI9dTfjSxcHg9TFmcR_6MjQJ9GQA2YgN");'>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24" id="rsvp">
+                <div class="flex flex-col lg:flex-row gap-16 items-start">
+                    <div class="w-full lg:w-1/2 relative p-4">
+                        <div class="absolute -inset-2 border-2 border-primary/20 rounded-3xl transform rotate-2"></div>
+                        <div
+                            class="relative aspect-square overflow-hidden rounded-2xl shadow-2xl border-4 border-card-dark">
+                            <div class="w-full h-full bg-center bg-cover"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXiijl7_CYvyjXaIS9SUEBMTLFWn2TtKly0HaP8IuDt0S6ydeGVjTH7eX6uAKl_QfVID_mEXqC1oye6LPzxqAE6eV8Vg4sk4QwfxJpf39yT44olD5sKJElfvS-_G_pb-vEDD8e6RMD8uWEwMNSyVffzX_CNHDWUhZoo90WNgcMzprN096cnRX9By2yohtitqYTXju_-aG31vWqcygL1LtV4XGSjJflTZRdWIoi0yqLq6GNX95HET5z9485UT7_97IARSfqBySAcpvM");'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 space-y-8">
+                        <div>
+                            <h2 class="text-4xl font-serif text-white mb-4">Prayers &amp; Wishes</h2>
+                            <p class="text-white/60">Leave your warm wishes for the happy couple </p>
+                        </div>
+                        <form class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-primary font-bold">Your
+                                    Name</label>
+                                <input
+                                    class="w-full bg-card-dark border-white/10 rounded-xl p-4 focus:ring-primary focus:border-primary text-white"
+                                    placeholder="Enter your full name" type="text" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-primary font-bold">Wedding
+                                    Wish</label>
+                                <textarea
+                                    class="w-full bg-card-dark border-white/10 rounded-xl p-4 focus:ring-primary focus:border-primary text-white"
+                                    placeholder="Send us your love and prayers..." rows="4"></textarea>
+                            </div>
+                            <button
+                                class="w-full py-5 bg-primary text-background-dark font-bold rounded-xl shadow-lg shadow-primary/10 hover:brightness-110 transition-all uppercase tracking-widest">Send Love</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 text-center">
+                <div class="max-w-2xl mx-auto space-y-12">
+                    <div>
+                        <span class="material-symbols-outlined text-5xl text-primary/40 mb-4">redeem</span>
+                        <h2 class="text-4xl font-serif text-white mb-4">Wedding Gift</h2>
+                        <p class="text-white/60 italic">Your presence is the greatest gift. If you wish to send a
+                            digital
+                            gift, you may use the details below.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-8">
+                        <div
+                            class="p-8 rounded-[2rem] bg-gradient-to-br from-card-dark to-black border border-primary/30 relative group shadow-2xl">
+                            <div class="absolute top-4 right-6 text-primary/40 font-black italic">BCA</div>
+                            <div class="text-left mt-8">
+                                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Account Number</p>
+                                <p id="norek1" class="text-xl font-bold text-white tracking-widest mb-6">1234-5678-9012
+                                </p>
+                                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Account Holder</p>
+                                <p class="text-lg font-bold text-primary">Marcus Bennett</p>
+                            </div>
+                            <button data-copy="norek1"
+                                class="mt-6 flex items-center gap-2 text-xs text-primary/70 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-sm">content_copy</span> Copy Details
+                            </button>
+                        </div>
+                        <div
+                            class="p-8 rounded-[2rem] bg-gradient-to-br from-card-dark to-black border border-primary/30 relative group shadow-2xl">
+                            <div class="absolute top-4 right-6 text-primary/40 font-black italic">Dana/Gopay</div>
+                            <div class="text-left mt-8">
+                                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Account Number</p>
+                                <p id="norek2" class="text-xl font-bold text-white tracking-widest mb-6">9876-5432-1098
+                                </p>
+                                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-1">Account Holder</p>
+                                <p class="text-lg font-bold text-primary">Kara Thompson</p>
+                            </div>
+                            <button data-copy="norek2"
+                                class="mt-6 flex items-center gap-2 text-xs text-primary/70 hover:text-primary transition-colors">
+                                <span class="material-symbols-outlined text-sm">content_copy</span> Copy Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="py-20 border-t border-primary/10 text-center mt-20 mb-10">
+            <div class="mb-12">
+                <h2 class="text-3xl font-serif text-white mb-4 italic">Marcus &amp; Kara</h2>
+                <p class="text-sm text-primary font-bold tracking-[0.5em] uppercase mb-6">#MarcusAndKara2026</p>
+            </div>
+            <div class="gold-divider opacity-10 mb-10 max-w-sm mx-auto"></div>
+            <p class="text-[10px] text-white/20 uppercase tracking-[0.4em]">Designed with Love &amp; SNA Digital</p>
+        </footer>
+    </section>
+
+    <script>
+        const scene1 = document.getElementById('scene-1');
+        const scene2 = document.getElementById('scene-2');
+        const nav = document.getElementById('nav');
+        const bgm = document.getElementById('bgm');
+
+        const openBtn = document.getElementById('OpenInvitation');
+
+        scene2.classList.add('scene-hide');
+        scene2.classList.add('hidden');
+
+        openBtn.addEventListener('click', () => {
+
+            bgm.play().catch(() => { });
+
+            scene1.classList.add('scene-hide');
+
+            setTimeout(() => {
+                scene1.classList.add('hidden');
+                scene2.classList.remove('hidden');
+                nav.classList.remove('hidden');
+
+                requestAnimationFrame(() => {
+                    scene2.classList.remove('scene-hide');
+                });
+            }, 600);
+        });
+
+        /* ================= COUNTDOWN ================= */
+        // set tanggal acara
+        const targetDate = new Date('2026-06-30T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) return;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.querySelectorAll('.cd-days').forEach(el => el.textContent = String(days).padStart(2, '0'));
+            document.querySelectorAll('.cd-hours').forEach(el => el.textContent = String(hours).padStart(2, '0'));
+            document.querySelectorAll('.cd-minutes').forEach(el => el.textContent = String(minutes).padStart(2, '0'));
+            document.querySelectorAll('.cd-seconds').forEach(el => el.textContent = String(seconds).padStart(2, '0'));
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Open maps
+        document.querySelectorAll('.btn-map').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.dataset.map;
+                if (url) {
+                window.open(url, '_blank');
+                }
+            });
+        });
+
+        // copy norek
+        document.querySelectorAll("button[data-copy]").forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const targetId = button.dataset.copy;
+                const el = document.getElementById(targetId);
+
+                if (!el) return;
+
+                const text = el.innerText.trim();
+
+                navigator.clipboard.writeText(text).then(() => {
+
+                    const icon = button.querySelector(".material-symbols-outlined");
+
+                    if (icon) {
+                        const old = icon.textContent;
+                        icon.textContent = "check";
+
+                        setTimeout(() => {
+                            icon.textContent = old;
+                        }, 1200);
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+
+
+</body>
+
+</html>
