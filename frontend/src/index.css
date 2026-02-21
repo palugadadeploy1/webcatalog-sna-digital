@@ -6,7 +6,8 @@
 
 @layer base {
   body {
-    @apply font-poppins;
+    font-family: "Poppins", "Segoe UI Emoji", "Apple Color Emoji",
+      "Noto Color Emoji", sans-serif;
   }
 }
 

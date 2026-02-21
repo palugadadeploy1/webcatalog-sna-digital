@@ -25,3 +25,24 @@ export async function getTemplateBySlug(slug) {
 
   return res.json();
 }
+
+/**
+ * POST TEMPLATE BARU (DIPROTEKSI API KEY)
+ */
+export async function createTemplate(data) {
+  const res = await fetch(`${API_URL}/templates`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Gunakan kunci yang sudah sukses di Postman tadi
+      "X-SNA-KEY": "21Febuari2026SNADigitalprikitiw@!",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error("Gagal menyimpan data. Pastikan kunci akses benar.");
+  }
+
+  return res.json();
+}

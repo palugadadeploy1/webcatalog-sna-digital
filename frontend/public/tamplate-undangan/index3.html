@@ -350,20 +350,20 @@
             <section class="max-w-[960px] w-full px-6 py-16" id="story">
                 <h3 class="font-serif text-3xl font-bold text-center mb-16">Our Love Story</h3>
                 <div class="relative">
-                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-px bg-dashed bg-primary/20"></div>
+                    <div class="absolute top-0 left-4 md:left-1/2 md:-translate-x-1/2 h-full w-px bg-primary/30"></div>
                     <div class="space-y-12">
                         <!-- Milestone 1 -->
-                        <div class="flex flex-col md:flex-row items-center gap-8 relative">
-                            <div class="md:w-1/2 md:text-right">
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative pl-10 md:pl-0">
+                            <div class="order-1 md:order-none md:w-1/2 md:text-right w-full">
                                 <p class="text-primary font-bold text-lg mb-2">2020 - First Met</p>
                                 <p class="text-[#9a634c] dark:text-gray-400">A chance encounter at a local coffee shop
                                     in Senopati started everything. Just a simple hello and a shared love for jazz
                                     music.</p>
                             </div>
                             <div
-                                class="absolute left-1/2 -translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
+                                class="absolute left-4 -translate-x-1/2 md:left-1/2 md:-translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
                             </div>
-                            <div class="md:w-1/2">
+                            <div class="order-2 md:order-none md:w-1/2 w-full">
                                 <div class="rounded-2xl overflow-hidden h-40 w-full bg-center bg-cover"
                                     data-alt="Two people drinking coffee at a cozy cafe"
                                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWDkjzcaxdZHE18zKe1s1aSlEgVbW-sEh90urY1k6JACnZCHg_3bkUg3qsDyhvSsY7y5WBRurlikg0TU7iWEYlJCs9p4c4w2GcRI5DkfZRVCAoHgfk2dB9ohR5ExidgUjoX4uBbh1_u5dpt2tNL4P8qx9z3EQdPIhGwPFKs7L77ZIozbLglm7PL5_yQtdCzAHMNTLrT4HSiOrCxq--JiQaAv0bkdTfmN55fpnmokzo7kwCnLCgrrGre4rklQEJwmyfXYTrko0FWA4-');">
@@ -371,16 +371,16 @@
                             </div>
                         </div>
                         <!-- Milestone 2 -->
-                        <div class="flex flex-col md:flex-row-reverse items-center gap-8 relative">
-                            <div class="md:w-1/2">
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-8 relative pl-10 md:pl-0">
+                            <div class="order-1 md:order-none md:w-1/2 w-full">
                                 <p class="text-primary font-bold text-lg mb-2">2025 - The Proposal</p>
                                 <p class="text-[#9a634c] dark:text-gray-400">Under the starlit sky of Ubud, Bali, he got
                                     down on one knee. It was the easiest 'Yes' she ever said.</p>
                             </div>
                             <div
-                                class="absolute left-1/2 -translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
+                                class="absolute left-4 -translate-x-1/2 md:left-1/2 md:-translate-x-1/2 size-4 bg-primary rounded-full ring-8 ring-primary/10 z-10">
                             </div>
-                            <div class="md:w-1/2">
+                            <div class="order-2 md:order-none md:w-1/2 w-full">
                                 <div class="rounded-2xl overflow-hidden h-40 w-full bg-center bg-cover"
                                     data-alt="Engagement ring box opened at sunset"
                                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTWZ2ufxYtd8Jk9hvObIw4ywSYBg78zI-F5NTYfkOFdTkBCzLXKN95vL6TAB3tTwPBPhMk6KPB9Ys93Xe0NopasLEN3F2e2y8h6ep42xTqLst8FGpvwYDALDVKA2bQAUeBi-k88hW9b7oC1LavSclVWni9hw7HrfqNv_ECL7vvTuGay1SMSvLI18XXs2zuIhIIb7CqsU5ED44bwO9d7GgHXVOdM7E8lzvDNS1qVqszOPs4uWNv2i972ROAzjo-FQgwv-BaX33TEZKo');">
@@ -606,6 +606,27 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // 1. Fungsi Mute (Gunakan nama unik agar tidak bentrok)
+function handleMute(isMuted) {
+    const mediaElements = document.querySelectorAll("audio, video");
+    mediaElements.forEach(media => {
+        media.muted = isMuted;
+        if (!isMuted && media.paused) {
+            media.play().catch(err => console.log("Autoplay blocked"));
+        }
+    });
+}
+
+// 2. Mendengarkan pesan dari Dashboard
+window.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "SET_MUTE") {
+        handleMute(event.data.value);
+    }
+});
+
+// 3. Pastikan penutup script benar
+</script>
     </script>
 
 </body>

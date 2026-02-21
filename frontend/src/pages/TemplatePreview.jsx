@@ -41,7 +41,7 @@ export default function TemplatePreview() {
     );
 
   const waMessage = encodeURIComponent(
-    `Halo SNA Digital, saya ingin memesan undangan template: ${template.name}`
+    `Halo SNA Digital, saya ingin memesan undangan template: ${template.name} !`
   );
 
   return (

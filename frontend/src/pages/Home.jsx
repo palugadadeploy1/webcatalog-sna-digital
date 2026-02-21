@@ -14,6 +14,7 @@ import { getTemplates } from "../services/api";
 export default function Home() {
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isMuted, setIsMuted] = useState(false); // State untuk kontrol suara
 
   useEffect(() => {
     getTemplates()
@@ -21,6 +22,19 @@ export default function Home() {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
+
+  // Fungsi agar Mute tidak bikin Iframe Refresh
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    const iframe = document.getElementById("preview-invitation");
+    if (iframe) {
+      iframe.contentWindow.postMessage(
+        { type: "SET_MUTE", value: newMutedState },
+        "*"
+      );
+    }
+  };
 
   return (
     <div className="overflow-x-hidden">
@@ -54,7 +68,9 @@ export default function Home() {
                   Liat Katalog
                 </button>
                 <a
-                  href="https://wa.me/628138201614"
+                  href={`https://wa.me/628138201614?text=${encodeURIComponent(
+                    "Halo SNA Digital, saya ingin konsultasi mengenai undangan digital !!!"
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto border border-brand-primary text-brand-primary px-6 py-3 rounded-xl text-center hover:bg-sky-50 transition"
@@ -68,7 +84,7 @@ export default function Home() {
                 <p>✔ Desain rapi, modern, dan responsif</p>
               </div>
 
-              {/* SOCIAL CONTACTS YANG TADI TERHAPUS */}
+              {/* SOCIAL CONTACTS */}
               <div className="mt-4 md:mt-6 flex flex-row gap-4 justify-center md:justify-start items-center text-[11px] sm:text-sm text-gray-600">
                 <a
                   href="https://instagram.com/sna_digital.id"
@@ -90,11 +106,21 @@ export default function Home() {
             {/* MOCKUP HP */}
             <div className="hidden md:flex justify-center animate-fade-right">
               <div className="relative w-[340px] h-[680px] rounded-[3.5rem] bg-gray-900 p-[12px] shadow-2xl border-[4px] border-gray-800">
+                {/* Tombol Mute */}
+                <button
+                  onClick={toggleMute}
+                  className="absolute top-8 right-8 z-50 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all border border-gray-200 text-lg"
+                >
+                  {isMuted ? "🔇" : "🔊"}
+                </button>
+
                 <div className="w-full h-full bg-white rounded-[2.8rem] overflow-hidden relative">
                   <iframe
+                    id="preview-invitation"
                     src="/tamplate-undangan/index3.html"
                     className="w-full h-full border-none"
                     title="preview"
+                    allow="autoplay"
                   />
                 </div>
               </div>
@@ -114,13 +140,6 @@ export default function Home() {
             Anda.
           </p>
 
-          {loading && (
-            <p className="text-gray-500 font-poppins">Memuat katalog...</p>
-          )}
-          {!loading && templates.length === 0 && (
-            <p className="text-gray-500 font-poppins">Belum ada template.</p>
-          )}
-
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {templates.map((item) => (
               <div
@@ -128,8 +147,7 @@ export default function Home() {
                 className="border rounded-xl overflow-hidden shadow hover:shadow-lg transition flex flex-col"
               >
                 <div className="relative w-full bg-gray-100 overflow-hidden">
-                  {item.thumbnail_url &&
-                  item.thumbnail_url.toLowerCase().endsWith(".mp4") ? (
+                  {item.thumbnail_url?.toLowerCase().endsWith(".mp4") ? (
                     <video
                       src={item.thumbnail_url}
                       className="w-full h-auto block"
@@ -137,21 +155,18 @@ export default function Home() {
                       loop
                       muted
                       playsInline
-                      key={`video-${item.id}`}
                     />
                   ) : (
                     <img
                       src={
                         item.thumbnail_url ||
-                        "https://via.placeholder.com/300x200?text=No+Image"
+                        "https://via.placeholder.com/300x200"
                       }
                       alt={item.name}
                       className="w-full h-auto block"
-                      key={`img-${item.id}`}
                     />
                   )}
                 </div>
-
                 <div className="p-4 flex flex-col flex-grow">
                   <h3 className="font-semibold text-lg font-poppins">
                     {item.name}
@@ -159,7 +174,6 @@ export default function Home() {
                   <p className="text-sm text-gray-600 font-poppins mb-4">
                     {item.description}
                   </p>
-
                   <div className="flex items-center justify-between mt-auto">
                     <span className="font-bold text-brand-primary text-lg">
                       Rp {item.price.toLocaleString("id-ID")}
@@ -172,7 +186,9 @@ export default function Home() {
                         Preview
                       </Link>
                       <a
-                        href={`https://wa.me/628138201614?text=Halo saya ingin order template ${item.name}`}
+                        href={`https://wa.me/628138201614?text=${encodeURIComponent(
+                          `Halo SNA Digital, saya ingin order template ${item.name}`
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 bg-brand-primary text-white rounded-lg hover:bg-brand-secondary transition"
@@ -201,6 +217,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* WHATSAPP */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-all font-poppins">
               <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-500">
                 <FaWhatsapp size={24} />
@@ -209,7 +226,9 @@ export default function Home() {
                 <h3 className="font-bold text-gray-800">WhatsApp</h3>
                 <p className="text-sm text-gray-500">SNA Digital</p>
                 <a
-                  href="https://wa.me/628138201614"
+                  href={`https://wa.me/628138201614?text=${encodeURIComponent(
+                    "Halo SNA Digital, saya ingin bertanya ?"
+                  )}`}
                   className="text-blue-500 text-sm font-semibold flex items-center gap-1 mt-1 hover:underline"
                 >
                   Chat Sekarang <span>→</span>
@@ -217,6 +236,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* INSTAGRAM */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-all font-poppins">
               <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500">
                 <FaInstagram size={24} />
@@ -226,6 +246,8 @@ export default function Home() {
                 <p className="text-sm text-gray-500">@sna_digital.id</p>
                 <a
                   href="https://instagram.com/sna_digital.id"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-500 text-sm font-semibold flex items-center gap-1 mt-1 hover:underline"
                 >
                   Follow Instagram <span>→</span>
@@ -233,6 +255,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* EMAIL */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-all font-poppins">
               <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-500">
                 <FaEnvelope size={24} />

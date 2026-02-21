@@ -8,6 +8,7 @@ import (
 
 	"wedding-invitation/config"
 	"wedding-invitation/internal/handler"
+	"wedding-invitation/internal/middleware"
 	"wedding-invitation/internal/repository"
 )
 
@@ -21,11 +22,13 @@ func main() {
 
 	r := gin.Default()
 
-	// CORS (BIAR FRONTEND BISA AKSES)
+	// CORS (Disesuaikan agar bisa menerima Header Custom)
 	r.Use(func(c *gin.Context) {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST")
+		// Tambahkan "X-SNA-KEY" agar tidak diblokir browser saat kirim header rahasia
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-SNA-KEY")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)
 			return
@@ -33,10 +36,19 @@ func main() {
 		c.Next()
 	})
 
-	// ROUTES
+	// --- ROUTES ---
+
+	// 1. Route Publik: Siapa saja bisa melihat daftar template
 	r.GET("/templates", h.GetTemplates)
-	r.POST("/templates", h.CreateTemplate)
 	r.GET("/templates/:slug", h.GetTemplateBySlug)
+
+	// 2. Route Terproteksi: Hanya Anda yang bisa menambah data
+	// Gunakan middleware untuk membungkus route POST
+	protected := r.Group("/")
+	protected.Use(middleware.AuthMiddleware()) 
+	{
+		protected.POST("/templates", h.CreateTemplate)
+	}
 
 	log.Println("Backend running at http://localhost:8080")
 	r.Run(":8080")
