@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -50,6 +51,10 @@ func main() {
 		protected.POST("/templates", h.CreateTemplate)
 	}
 
-	log.Println("Backend running at http://localhost:8080")
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	log.Println("Backend running at port " + port)
+	r.Run(":" + port)
 }
